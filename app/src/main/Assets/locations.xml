@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<location id="-1">-->
+    <!--<location_name>Tất cả địa điểm</location_name>-->
+    <!--</location>-->
+    <!--<location id="4">-->
+    <!--<location_name>Ha NOi</location_name>-->
+    <!--</location>-->
+
+    <!--<location id="3">-->
+    <!--<location_name>Hung Dep Trai</location_name>-->
+    <!--</location>-->
+    <location id="-1">
+        <location_name>Tất cả địa điểm</location_name>
+    </location>
+    <location id="4">
+        <location_name>Hà Nội</location_name>
+    </location>
+    <location id="8">
+        <location_name>Hồ Chí Minh</location_name>
+    </location>
+    <location id="76">
+        <location_name>An Giang</location_name>
+    </location>
+    <location id="64">
+        <location_name>Bà Rịa - Vũng Tàu</location_name>
+    </location>
+    <location id="781">
+        <location_name>Bạc Liêu</location_name>
+    </location>
+    <location id="281">
+        <location_name>Bắc Cạn</location_name>
+    </location>
+    <location id="240">
+        <location_name>Bắc Giang</location_name>
+    </location>
+    <location id="241">
+        <location_name>Bắc Ninh</location_name>
+    </location>
+    <location id="75">
+        <location_name>Bến Tre</location_name>
+    </location>
+    <location id="650">
+        <location_name>Bình Dương</location_name>
+    </location>
+    <location id="56">
+        <location_name>Bình Định</location_name>
+    </location>
+    <location id="651">
+        <location_name>Bình Phước</location_name>
+    </location>
+    <location id="62">
+        <location_name>Bình Thuận</location_name>
+    </location>
+    <location id="78">
+        <location_name>Cà Mau</location_name>
+    </location>
+    <location id="26">
+        <location_name>Cao Bằng</location_name>
+    </location>
+    <location id="71">
+        <location_name>Cần Thơ</location_name>
+    </location>
+    <location id="50">
+        <location_name>Dak Lak</location_name>
+    </location>
+    <location id="1042">
+        <location_name>Dak Nông</location_name>
+    </location>
+    <location id="511">
+        <location_name>Đà Nẵng</location_name>
+    </location>
+    <location id="900">
+        <location_name>Điện Biên</location_name>
+    </location>
+    <location id="1064">
+        <location_name>Đồng Bằng Sông Cửu Long</location_name>
+    </location>
+    <location id="61">
+        <location_name>Đồng Nai</location_name>
+    </location>
+    <location id="67">
+        <location_name>Đồng Tháp</location_name>
+    </location>
+    <location id="59">
+        <location_name>Gia Lai</location_name>
+    </location>
+    <location id="19">
+        <location_name>Hà Giang</location_name>
+    </location>
+    <location id="351">
+        <location_name>Hà Nam</location_name>
+    </location>
+    <location id="34">
+        <location_name>Hà Tây</location_name>
+    </location>
+    <location id="39">
+        <location_name>Hà Tĩnh</location_name>
+    </location>
+    <location id="320">
+        <location_name>Hải Dương</location_name>
+    </location>
+    <location id="31">
+        <location_name>Hải Phòng</location_name>
+    </location>
+    <location id="780">
+        <location_name>Hậu Giang</location_name>
+    </location>
+    <location id="18">
+        <location_name>Hòa Bình</location_name>
+    </location>
+    <location id="321">
+        <location_name>Hưng Yên</location_name>
+    </location>
+    <location id="901">
+        <location_name>Khác</location_name>
+    </location>
+    <location id="58">
+        <location_name>Khánh Hòa</location_name>
+    </location>
+    <location id="77">
+        <location_name>Kiên Giang</location_name>
+    </location>
+    <location id="60">
+        <location_name>Kon Tum</location_name>
+    </location>
+    <location id="1071">
+        <location_name>KV Bắc Trung Bộ</location_name>
+    </location>
+    <location id="1069">
+        <location_name>KV Đông Nam Bộ</location_name>
+    </location>
+    <location id="1070">
+        <location_name>KV Nam Trung Bộ</location_name>
+    </location>
+    <location id="1072">
+        <location_name>KV Tây Nguyên</location_name>
+    </location>
+    <location id="23">
+        <location_name>Lai Châu</location_name>
+    </location>
+    <location id="25">
+        <location_name>Lạng Sơn</location_name>
+    </location>
+    <location id="20">
+        <location_name>Lào Cai</location_name>
+    </location>
+    <location id="63">
+        <location_name>Lâm Đồng</location_name>
+    </location>
+    <location id="72">
+        <location_name>Long An</location_name>
+    </location>
+    <location id="350">
+        <location_name>Nam Định</location_name>
+    </location>
+    <location id="38">
+        <location_name>Nghệ An</location_name>
+    </location>
+    <location id="30">
+        <location_name>Ninh Bình</location_name>
+    </location>
+    <location id="8">
+        <location_name>Ninh Thuận</location_name>
+    </location>
+    <location id="210">
+        <location_name>Phú Thọ</location_name>
+    </location>
+    <location id="57">
+        <location_name>Phú Yên</location_name>
+    </location>
+    <location id="52">
+        <location_name>Quảng Bình</location_name>
+    </location>
+    <location id="510">
+        <location_name>Quảng Nam</location_name>
+    </location>
+    <location id="55">
+        <location_name>Quảng Ngãi</location_name>
+    </location>
+    <location id="33">
+        <location_name>Quảng Ninh</location_name>
+    </location>
+    <location id="53">
+        <location_name>Quảng Trị</location_name>
+    </location>
+    <location id="79">
+        <location_name>Sóc Trăng</location_name>
+    </location>
+    <location id="22">
+        <location_name>Sơn La</location_name>
+    </location>
+    <location id="66">
+        <location_name>Tây Ninh</location_name>
+    </location>
+    <location id="36">
+        <location_name>Thái Bình</location_name>
+    </location>
+    <location id="280">
+        <location_name>Thái Nguyên</location_name>
+    </location>
+    <location id="37">
+        <location_name>Thanh Hóa</location_name>
+    </location>
+    <location id="54">
+        <location_name>Thừa Thiên- Huế</location_name>
+    </location>
+    <location id="73">
+        <location_name>Tiền Giang</location_name>
+    </location>
+    <location id="1065">
+        <location_name>Toàn quốc</location_name>
+    </location>
+    <location id="74">
+        <location_name>Trà Vinh</location_name>
+    </location>
+    <location id="27">
+        <location_name>Tuyên Quang</location_name>
+    </location>
+    <location id="70">
+        <location_name>Vĩnh Long</location_name>
+    </location>
+    <location id="211">
+        <location_name>Vĩnh Phúc</location_name>
+    </location>
+    <location id="29">
+        <location_name>Yên Bái</location_name>
+    </location>
+</resources>

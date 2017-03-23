@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<industry id="-1">-->
+        <!--<industry_name>Tất cả ngành nghề</industry_name>-->
+    <!--</industry>-->
+
+    <industry id="51">
+        <industry_name>An Ninh / Bảo Vệ</industry_name>
+    </industry>
+    <industry id="58">
+        <industry_name>An toàn lao động</industry_name>
+    </industry>
+    <industry id="31">
+        <industry_name>Bán hàng / Kinh doanh</industry_name>
+    </industry>
+    <industry id="30">
+        <industry_name>Bán lẻ / Bán sỉ</industry_name>
+    </industry>
+    <industry id="23">
+        <industry_name>Bảo hiểm</industry_name>
+    </industry>
+    <industry id="28">
+        <industry_name>Bất động sản</industry_name>
+    </industry>
+    <industry id="38">
+        <industry_name>Biên phiên dịch</industry_name>
+    </industry>
+    <industry id="32">
+        <industry_name>Bưu chính viễn thông</industry_name>
+    </industry>
+    <industry id="52">
+        <industry_name>Chăn nuôi / Thú y</industry_name>
+    </industry>
+    <industry id="46">
+        <industry_name>Chứng khoán</industry_name>
+    </industry>
+    <industry id="63">
+        <industry_name>CNTT - Phần cứng / Mạng</industry_name>
+    </industry>
+    <industry id="1">
+        <industry_name>CNTT - Phần mềm</industry_name>
+    </industry>
+    <industry id="69">
+        <industry_name>Công nghệ sinh học</industry_name>
+    </industry>
+    <industry id="70">
+        <industry_name>Công nghệ thực phẩm / Dinh dưỡng</industry_name>
+    </industry>
+    <industry id="14">
+        <industry_name>Cơ khí/ Ô tô/ Tự động hóa</industry_name>
+    </industry>
+    <industry id="26">
+        <industry_name>Dầu khí</industry_name>
+    </industry>
+    <industry id="39">
+        <industry_name>Dệt may / Da giày / Thời trang</industry_name>
+    </industry>
+    <industry id="12">
+        <industry_name>Dịch vụ khách hàng</industry_name>
+    </industry>
+    <industry id="34">
+        <industry_name>Du lịch</industry_name>
+    </industry>
+    <industry id="7">
+        <industry_name>Dược phẩm</industry_name>
+    </industry>
+    <industry id="48">
+        <industry_name>Điện / Điện tử / Điện lạnh</industry_name>
+    </industry>
+    <industry id="35">
+        <industry_name>Đồ gỗ</industry_name>
+    </industry>
+    <industry id="15">
+        <industry_name>Giải trí</industry_name>
+    </industry>
+    <industry id="13">
+        <industry_name>Giáo dục / Đào tạo</industry_name>
+    </industry>
+    <industry id="10">
+        <industry_name>Hàng gia dụng / Chăm sóc cá nhân</industry_name>
+    </industry>
+    <industry id="61">
+        <industry_name>Hàng hải</industry_name>
+    </industry>
+    <industry id="60">
+        <industry_name>Hàng không</industry_name>
+    </industry>
+    <industry id="3">
+        <industry_name>Hành chính / Thư ký</industry_name>
+    </industry>
+    <industry id="41">
+        <industry_name>Hóa học</industry_name>
+    </industry>
+    <industry id="64">
+        <industry_name>In ấn / Xuất bản</industry_name>
+    </industry>
+    <industry id="2">
+        <industry_name>Kế toán / Kiểm toán</industry_name>
+    </industry>
+    <industry id="65">
+        <industry_name>Khoáng sản</industry_name>
+    </industry>
+    <industry id="6">
+        <industry_name>Kiến trúc</industry_name>
+    </industry>
+    <industry id="44">
+        <industry_name>Lao động phổ thông</industry_name>
+    </industry>
+    <industry id="50">
+        <industry_name>Lâm Nghiệp</industry_name>
+    </industry>
+    <industry id="24">
+        <industry_name>Luật / Pháp lý</industry_name>
+    </industry>
+    <industry id="16">
+        <industry_name>Môi trường</industry_name>
+    </industry>
+    <industry id="45">
+        <industry_name>Mới tốt nghiệp / Thực tập</industry_name>
+    </industry>
+    <industry id="11">
+        <industry_name>Mỹ thuật / Nghệ thuật / Thiết kế</industry_name>
+    </industry>
+    <industry id="19">
+        <industry_name>Ngân hàng</industry_name>
+    </industry>
+    <industry id="29">
+        <industry_name>Nhà hàng / Khách sạn</industry_name>
+    </industry>
+    <industry id="22">
+        <industry_name>Nhân sự</industry_name>
+    </industry>
+    <industry id="47">
+        <industry_name>Nội ngoại thất</industry_name>
+    </industry>
+    <industry id="5">
+        <industry_name>Nông nghiệp</industry_name>
+    </industry>
+    <industry id="20">
+        <industry_name>Phi chính phủ / Phi lợi nhuận</industry_name>
+    </industry>
+    <industry id="42">
+        <industry_name>Quản lý chất lượng (QA/QC)</industry_name>
+    </industry>
+    <industry id="17">
+        <industry_name>Quản lý điều hành</industry_name>
+    </industry>
+    <industry id="67">
+        <industry_name>Quảng cáo / Đối ngoại / Truyền Thông</industry_name>
+    </industry>
+    <industry id="25">
+        <industry_name>Sản xuất / Vận hành sản xuất</industry_name>
+    </industry>
+    <industry id="59">
+        <industry_name>Tài chính / Đầu tư</industry_name>
+    </industry>
+    <industry id="36">
+        <industry_name>Thống kê</industry_name>
+    </industry>
+    <industry id="43">
+        <industry_name>Thu mua / Vật tư</industry_name>
+    </industry>
+    <industry id="53">
+        <industry_name>Thủy lợi</industry_name>
+    </industry>
+    <industry id="49">
+        <industry_name>Thủy sản / Hải sản</industry_name>
+    </industry>
+    <industry id="57">
+        <industry_name>Thư viện</industry_name>
+    </industry>
+    <industry id="21">
+        <industry_name>Thực phẩm / Đồ uống</industry_name>
+    </industry>
+    <industry id="4">
+        <industry_name>Tiếp thị / Marketing</industry_name>
+    </industry>
+    <industry id="37">
+        <industry_name>Tiếp thị trực tuyến</industry_name>
+    </industry>
+    <industry id="68">
+        <industry_name>Tổ chức sự kiện</industry_name>
+    </industry>
+    <industry id="54">
+        <industry_name>Trắc địa / Địa Chất</industry_name>
+    </industry>
+    <industry id="66">
+        <industry_name>Truyền hình / Báo chí / Biên tập</industry_name>
+    </industry>
+    <industry id="9">
+        <industry_name>Tư vấn</industry_name>
+    </industry>
+    <industry id="33">
+        <industry_name>Vận chuyển / Giao nhận / Kho vận</industry_name>
+    </industry>
+    <industry id="8">
+        <industry_name>Xây dựng</industry_name>
+    </industry>
+    <industry id="18">
+        <industry_name>Xuất nhập khẩu</industry_name>
+    </industry>
+    <industry id="56">
+        <industry_name>Y tế / Chăm sóc sức khỏe</industry_name>
+    </industry>
+    <industry id="71">
+        <industry_name>Bảo trì / Sửa chữa</industry_name>
+    </industry>
+    <industry id="27">
+        <industry_name>Ngành khác</industry_name>
+    </industry>
+</resources>
