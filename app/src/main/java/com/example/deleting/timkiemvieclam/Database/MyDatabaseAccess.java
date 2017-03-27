@@ -102,6 +102,55 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
 
     }
 
+    public ArrayList<String> getIDLocation() {
+        ArrayList<String> listID = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT * FROM " + table_Location;
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    String name = cursor.getString(cursor.getColumnIndex("location_id"));
+                    listID.add(name);
+                }
+            }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            db.endTransaction();
+            db.close();
+        }
+        return listID;
+    }
+
+    public ArrayList<String> getNameLocation() {
+        ArrayList<String> listName = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT * FROM " + table_Location;
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    String name = cursor.getString(cursor.getColumnIndex("location_name"));
+                    listName.add(name);
+                }
+            }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            db.endTransaction();
+            db.close();
+        }
+        return listName;
+    }
+
+    /*
     public List<Location> getallLocation() {
         SQLiteDatabase database = this.getWritableDatabase();
         List<Location> locations = new ArrayList<>();
@@ -116,7 +165,7 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return locations;
-    }
+    }*/
 
     public int getLocationCount() {
         String sql = "select * from " + table_Location;
@@ -141,7 +190,55 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
         return false;
     }
 
-    public List<Industry> getallIndustry() {
+    public ArrayList<String> getIDIndustry() {
+        ArrayList<String> listID = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT * FROM " + table_Industry;
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    String name = cursor.getString(cursor.getColumnIndex("industry_id"));
+                    listID.add(name);
+                }
+            }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            db.endTransaction();
+            db.close();
+        }
+        return listID;
+    }
+
+    public ArrayList<String> getNameIndustry() {
+        ArrayList<String> listName = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT * FROM " + table_Industry;
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    String name = cursor.getString(cursor.getColumnIndex("industry_name"));
+                    listName.add(name);
+                }
+            }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            db.endTransaction();
+            db.close();
+        }
+        return listName;
+    }
+
+ /*   public List<Industry> getallIndustry() {
         SQLiteDatabase database = this.getWritableDatabase();
         List<Industry> industrys = new ArrayList<>();
         String sql = "select * from " + table_Industry;
@@ -155,7 +252,7 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return industrys;
-    }
+    }*/
 
     public int getCountIndustry() {
         String sql = "select * from " + table_Industry;
