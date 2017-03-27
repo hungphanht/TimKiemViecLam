@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<industry id="-1">-->
-        <!--<industry_name>Tất cả ngành nghề</industry_name>-->
-    <!--</industry>-->
+    <industry id="-1">
+        <industry_name>Tất cả ngành nghề</industry_name>
+    </industry>
 
     <industry id="51">
         <industry_name>An Ninh / Bảo Vệ</industry_name>
