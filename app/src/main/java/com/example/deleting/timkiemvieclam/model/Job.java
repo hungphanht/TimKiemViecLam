@@ -8,10 +8,10 @@ import java.util.Date;
 
 public class Job {
     public int job_id;
-    public String job_title;
+    public String job_title; // ten cong viec
     public int job_worrking_type;
-    public float job_fromsalary;
-    public float job_tosalary;
+    public long job_fromsalary;
+    public long job_tosalary;
     public int job_fromage;
     public int job_toage;
     public int job_gender;// 0: boy; 1 girl;
@@ -20,38 +20,48 @@ public class Job {
     public String job_requireskill; //yêu cầu công việc
     public String job_contact_company;//tên công ty
     public String job_contact_address;//địa chỉ công ty
-    public String job_contact_email ; //email lien he
-    public String job_contact_emai2 ; //email lien he2
+    public String job_contact_email; //email lien he
+    public String job_contact_emai2; //email lien he2
     public String location_name;// vi tri tuyen dung VD:Ha noi
     public String emp_desc; //mo ta ve cong ty;
     public String emp_website;
     public String job_url;//link bai dang tren careerbuilder
-    public Date date_view;// ngay cap nhat bai viet;
+    public String date_view;// ngay cap nhat bai viet;
     public String share_img;//link logo cong ty
 
-    public Job(int job_id, String job_title, int job_worrking_type, float job_fromsalary, float job_tosalary, int job_fromage, int job_toage, int job_gender, Date job_lastdate, String job_content, String job_requireskill, String job_contact_company, String job_contact_address, String job_contact_email, String job_contact_emai2, String location_name, String emp_desc, String emp_website, String job_url, Date date_view, String share_img) {
-//        this.job_id = job_id;
-//        this.job_title = job_title;
-//        this.job_worrking_type = job_worrking_type;
-//        this.job_fromsalary = job_fromsalary;
-//        this.job_tosalary = job_tosalary;
-//        this.job_fromage = job_fromage;
-//        this.job_toage = job_toage;
-//        this.job_gender = job_gender;
-//        this.job_lastdate = job_lastdate;
-//        this.job_content = job_content;
-//        this.job_requireskill = job_requireskill;
-//        this.job_contact_company = job_contact_company;
-//        this.job_contact_address = job_contact_address;
-//        this.job_contact_email = job_contact_email;
-//        this.job_contact_emai2 = job_contact_emai2;
-//        this.location_name = location_name;
-//        this.emp_desc = emp_desc;
-//        this.emp_website = emp_website;
-//        this.job_url = job_url;
-//        this.date_view = date_view;
-//        this.share_img = share_img;
+
+    public Job(String job_title, String job_contact_company, String location_name, long job_fromsalary, long job_tosalary, String date_view) {
+        this.job_title = job_title;
+        this.job_contact_company = job_contact_company;
+        this.location_name = location_name;
+        this.job_fromsalary = job_fromsalary;
+        this.job_tosalary = job_tosalary;
+        this.date_view = date_view;
     }
+//
+//    public Job(int job_id, String job_title, int job_worrking_type, float job_fromsalary, float job_tosalary, int job_fromage, int job_toage, int job_gender, Date job_lastdate, String job_content, String job_requireskill, String job_contact_company, String job_contact_address, String job_contact_email, String job_contact_emai2, String location_name, String emp_desc, String emp_website, String job_url, Date date_view, String share_img) {
+////        this.job_id = job_id;
+////        this.job_title = job_title;
+////        this.job_worrking_type = job_worrking_type;
+////        this.job_fromsalary = job_fromsalary;
+////        this.job_tosalary = job_tosalary;
+////        this.job_fromage = job_fromage;
+////        this.job_toage = job_toage;
+////        this.job_gender = job_gender;
+////        this.job_lastdate = job_lastdate;
+////        this.job_content = job_content;
+////        this.job_requireskill = job_requireskill;
+////        this.job_contact_company = job_contact_company;
+////        this.job_contact_address = job_contact_address;
+////        this.job_contact_email = job_contact_email;
+////        this.job_contact_emai2 = job_contact_emai2;
+////        this.location_name = location_name;
+////        this.emp_desc = emp_desc;
+////        this.emp_website = emp_website;
+////        this.job_url = job_url;
+////        this.date_view = date_view;
+////        this.share_img = share_img;
+//    }
 
     public int getJob_id() {
         return job_id;
@@ -60,6 +70,7 @@ public class Job {
     public void setJob_id(int job_id) {
         this.job_id = job_id;
     }
+
     public String getJob_title() {
         return job_title;
     }
@@ -80,7 +91,7 @@ public class Job {
         return job_fromsalary;
     }
 
-    public void setJob_fromsalary(float job_fromsalary) {
+    public void setJob_fromsalary(long job_fromsalary) {
         this.job_fromsalary = job_fromsalary;
     }
 
@@ -88,7 +99,7 @@ public class Job {
         return job_tosalary;
     }
 
-    public void setJob_tosalary(float job_tosalary) {
+    public void setJob_tosalary(long job_tosalary) {
         this.job_tosalary = job_tosalary;
     }
 
@@ -204,11 +215,11 @@ public class Job {
         this.job_url = job_url;
     }
 
-    public Date getDate_view() {
+    public String getDate_view() {
         return date_view;
     }
 
-    public void setDate_view(Date date_view) {
+    public void setDate_view(String date_view) {
         this.date_view = date_view;
     }
 
