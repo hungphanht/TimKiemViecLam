@@ -75,9 +75,8 @@ public class ListAdapter extends ArrayAdapter<Job> {
             TextView txt5 = (TextView) view.findViewById(R.id.tvDate);
             txt5.setText(p.date_view);
 
-            TextView txt6 = (TextView) view.findViewById(R.id.tvJobID);
-            txt6.setText(String.valueOf(p.job_id));
-
+            ImageView img = (ImageView) view.findViewById(R.id.imvLogo);
+            Picasso.with(getContext()).load(p.share_img).into(img);
         }
         return view;
     }

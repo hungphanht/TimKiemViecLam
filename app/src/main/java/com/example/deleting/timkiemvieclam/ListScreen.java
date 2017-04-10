@@ -5,15 +5,15 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.deleting.timkiemvieclam.R;
-import com.example.deleting.timkiemvieclam.adapter.JobAdapter;
+import com.example.deleting.timkiemvieclam.adapter.ListAdapter;
 import com.example.deleting.timkiemvieclam.model.Job;
-import com.example.deleting.timkiemvieclam.model.Location;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,17 +42,20 @@ public class ListScreen extends AppCompatActivity {
     Spinner spnslnews;
     ListView lv;
     ArrayList<Job> mangLV;
-
+    ListAdapter adapter;
     String apisearch;
+    int Job_ID;
+    String logo;
+
+    String apilogo;
     TextView tvtest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_screen);
-        tvtest = (TextView) findViewById(R.id.test);
         lv = (ListView) findViewById(R.id.listViewDanhSach);
-
+        //imgtest = (ImageView) findViewById(R.id.imgTest);
         mangLV = new ArrayList<Job>();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -63,12 +66,15 @@ public class ListScreen extends AppCompatActivity {
         //có intent rồi thì lấy Bundle dựa vào MyPackage
         Bundle packageFromCaller =
                 callerIntent.getBundleExtra("Mypack");
-        String JobName = packageFromCaller.getString("JobName");
+        String key = packageFromCaller.getString("key");
         String idIndustry = packageFromCaller.getString("idIndustry");
         String idLocation = packageFromCaller.getString("idLocation");
 
-        apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + JobName + "\",\"industry\":\"" + idIndustry + "\",\"location\":\"" + idLocation + "\"}";
-
+        if (idIndustry == "") {
+            apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"location\":\"" + idLocation + "\"}";
+        } else {
+            apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"industry\":\"" + idIndustry + "\",\"location\":\"" + idLocation + "\"}";
+        }
 
         String input = "";
         try {
@@ -79,9 +85,10 @@ public class ListScreen extends AppCompatActivity {
             //Log.e("test", "Loi o day");
             e.printStackTrace();
         }
-        //Log.d("test", "Day la output: " + input);
+
         String data = GetJson(input);
         Parsejson(data);
+
 
         spnlocation = (Spinner) findViewById(R.id.spnlocation);
         ArrayAdapter<String> adaptersort = new ArrayAdapter<String>(
@@ -98,12 +105,21 @@ public class ListScreen extends AppCompatActivity {
         adapternews.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spnslnews.setAdapter(adapternews);
 
-
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ListScreen.this, DetailScreen.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("key", mangLV.get(position).job_id);
+                intent.putExtra("Mypack", bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     public void Parsejson(String input) {
         Log.d("test", input);
-        String locationName, JobTitName1, JobTitName;
+        String locationName, JobTitName, DateView;
 
         if (input.isEmpty()) {
             return;
@@ -114,21 +130,40 @@ public class ListScreen extends AppCompatActivity {
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
 
-                JobTitName1 = obj.getString("JOB_TITLE").replace("<em>", "");
-                JobTitName = JobTitName1.replace("</em>", "");
+                JobTitName = obj.getString("JOB_TITLE").replace("</em>", "").replace("<em>", "");
                 locationName = obj.getString("LOCATION_NAME").replace("<br>", " -");
+                DateView = obj.getString("DATE_VIEW").substring(0, 10);
+                Job_ID = obj.getInt("JOB_ID");
 
-                mangLV.add(new Job(
-                        JobTitName,
-                        obj.getString("EMP_NAME"),
-                        locationName,
-                        obj.getLong("JOB_FROMSALARY"),
-                        obj.getLong("JOB_TOSALARY"),
-                        obj.getString("DATE_VIEW")
-                ));
+                apilogo = "http://api.careerbuilder.vn/?method=getJobDetail&token=a5ab26bde79eb7db6198530ddaff3e236&job_id=" + Job_ID;
+
+                String input1 = "";
+                try {
+                    input1 = downloadUrl(apilogo);
+                    //Log.e("test", "da o day");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    //Log.e("test", "Loi o day");
+                    e.printStackTrace();
+                }
+                //Log.d("test", "Day la output: " + input);
+                String data1 = GetJson(input1);
+                Parsejson1(data1);
+
+                Job list = new Job();
+                list.setJob_title(JobTitName);
+                list.setJob_contact_company(obj.getString("EMP_NAME"));
+                list.setLocation_name(locationName);
+                list.setJob_fromsalary(obj.getLong("JOB_FROMSALARY"));
+                list.setJob_tosalary(obj.getLong("JOB_TOSALARY"));
+                list.setDate_view(DateView);
+                list.setJob_id(Job_ID);
+                list.setShare_img(logo);
+                mangLV.add(list);
+                //Log.d("test","Logooooooooooo" + obj.get("SHARE_IMG"));
             }
 
-            ListAdapter adapter = new ListAdapter(
+            adapter = new ListAdapter(
                     getApplicationContext(),
                     R.layout.item_listview,
                     mangLV
@@ -139,6 +174,18 @@ public class ListScreen extends AppCompatActivity {
         }
 
 
+    }
+
+    public void Parsejson1(String input1) {
+        //Log.d("test","AAA" +input1);
+
+        try {
+
+            JSONObject obj1 = new JSONObject(input1);
+            logo = obj1.getString("SHARE_IMG");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public String GetJson(String input) {
@@ -160,16 +207,16 @@ public class ListScreen extends AppCompatActivity {
                         break;
                     case XmlPullParser.START_TAG:// là tag mở
                         nodeName = parser.getName();
-                        if (nodeName.equals("advanceSearchJobs")) {
+                        if (nodeName.equals("advanceSearchJobs") || nodeName.equals("getJobDetail")) {
                             found = true;
-                        } else if ((nodeName.equals("response")) && found) {
+                        } else if (((nodeName.equals("response")) || nodeName.equals("response")) && found) {
                             //Log.d("test","json: "+parser.nextText());
                             json = parser.nextText();
                         }
                         break;
                     case XmlPullParser.END_TAG:
                         nodeName = parser.getName();
-                        if (nodeName.equals("advanceSearchJobs")) {
+                        if (nodeName.equals("advanceSearchJobs") || nodeName.equals("getJobDetail")) {
                             found = false;
                         }
                         break;
@@ -229,5 +276,4 @@ public class ListScreen extends AppCompatActivity {
         }
         return data;
     }
-
 }
