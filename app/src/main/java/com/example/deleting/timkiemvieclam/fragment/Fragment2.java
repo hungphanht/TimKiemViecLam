@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
+import com.example.deleting.timkiemvieclam.DetailScreen;
 import com.example.deleting.timkiemvieclam.ListScreen;
 import com.example.deleting.timkiemvieclam.R;
 
@@ -101,7 +102,7 @@ public class Fragment2 extends Fragment {
 
             //Khai báo Bundle
             bundle = new Bundle();
-            bundle.putString("JobName", edtjobname);
+            bundle.putString("key", edtjobname);
             bundle.putString("idIndustry", "");
             bundle.putString("idLocation", idLocation);
             intent.putExtra("Mypack", bundle);

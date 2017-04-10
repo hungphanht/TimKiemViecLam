@@ -1,5 +1,7 @@
 package com.example.deleting.timkiemvieclam.model;
 
+import com.squareup.picasso.RequestCreator;
+
 import java.util.Date;
 
 /**
@@ -9,13 +11,12 @@ import java.util.Date;
 public class Job {
     public int job_id;
     public String job_title; // ten cong viec
-    public int job_worrking_type;
     public long job_fromsalary;
     public long job_tosalary;
     public int job_fromage;
     public int job_toage;
     public int job_gender;// 0: boy; 1 girl;
-    public Date job_lastdate;// ngày hết hạn nạp hồ sơ
+    public String job_lastdate;// ngày hết hạn nạp hồ sơ
     public String job_content;//mô tả công việc
     public String job_requireskill; //yêu cầu công việc
     public String job_contact_company;//tên công ty
@@ -30,14 +31,24 @@ public class Job {
     public String share_img;//link logo cong ty
 
 
-    public Job(String job_title, String job_contact_company, String location_name, long job_fromsalary, long job_tosalary, String date_view) {
+    public Job(String job_title, String job_contact_company, String location_name, long job_fromsalary, long job_tosalary, String date_view, int job_id, String share_img) {
         this.job_title = job_title;
         this.job_contact_company = job_contact_company;
         this.location_name = location_name;
         this.job_fromsalary = job_fromsalary;
         this.job_tosalary = job_tosalary;
         this.date_view = date_view;
+        this.job_id = job_id;
+        this.share_img = share_img;
     }
+
+
+    public Job() {
+
+    }
+
+
+
 //
 //    public Job(int job_id, String job_title, int job_worrking_type, float job_fromsalary, float job_tosalary, int job_fromage, int job_toage, int job_gender, Date job_lastdate, String job_content, String job_requireskill, String job_contact_company, String job_contact_address, String job_contact_email, String job_contact_emai2, String location_name, String emp_desc, String emp_website, String job_url, Date date_view, String share_img) {
 ////        this.job_id = job_id;
@@ -79,15 +90,7 @@ public class Job {
         this.job_title = job_title;
     }
 
-    public int getJob_worrking_type() {
-        return job_worrking_type;
-    }
-
-    public void setJob_worrking_type(int job_worrking_type) {
-        this.job_worrking_type = job_worrking_type;
-    }
-
-    public float getJob_fromsalary() {
+    public long getJob_fromsalary() {
         return job_fromsalary;
     }
 
@@ -95,7 +98,7 @@ public class Job {
         this.job_fromsalary = job_fromsalary;
     }
 
-    public float getJob_tosalary() {
+    public long getJob_tosalary() {
         return job_tosalary;
     }
 
@@ -127,11 +130,11 @@ public class Job {
         this.job_gender = job_gender;
     }
 
-    public Date getJob_lastdate() {
+    public String getJob_lastdate() {
         return job_lastdate;
     }
 
-    public void setJob_lastdate(Date job_lastdate) {
+    public void setJob_lastdate(String job_lastdate) {
         this.job_lastdate = job_lastdate;
     }
 

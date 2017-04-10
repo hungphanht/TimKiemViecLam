@@ -131,6 +131,52 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
     }
 
 
+    public List<Job> getAllJob() {
+        //Log.i(TAG, "MyDatabaseHelper.getAllNotes ... " );
+
+        List<Job> jobList = new ArrayList<Job>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + table_Job;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+
+        // Duyệt trên con trỏ, và thêm vào danh sách.
+        if (cursor.moveToFirst()) {
+            do {
+                Job job = new Job();
+                job.setJob_id(cursor.getInt(0));
+                job.setJob_title(cursor.getString(1));
+                job.setJob_fromsalary(cursor.getLong(2));
+                job.setJob_tosalary(cursor.getLong(3));
+                job.setJob_fromage(cursor.getInt(4));
+                job.setJob_toage(cursor.getInt(5));
+                job.setJob_gender(cursor.getInt(6));
+                job.setJob_lastdate(cursor.getString(7));
+                job.setJob_content(cursor.getString(8));
+                job.setJob_requireskill(cursor.getString(9));
+                job.setJob_contact_company(cursor.getString(10));
+                job.setJob_contact_address(cursor.getString(11));
+                job.setJob_contact_email(cursor.getString(12));
+                job.setJob_contact_emai2(cursor.getString(13));
+                job.setLocation_name(cursor.getString(14));
+                job.setEmp_desc(cursor.getString(15));
+                job.setEmp_website(cursor.getString(16));
+                job.setJob_url(cursor.getString(17));
+                job.setDate_view(cursor.getString(18));
+                job.setShare_img(cursor.getString(19));
+                // Thêm vào danh sách.
+                jobList.add(job);
+            } while (cursor.moveToNext());
+        }
+
+        // return note list
+        return jobList;
+    }
+
+
+
     public int getJobsCount() {
         //Log.i(TAG, "MyDatabaseHelper.getNotesCount ... " );
 

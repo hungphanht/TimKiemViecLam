@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +17,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
+import com.example.deleting.timkiemvieclam.DetailScreen;
 import com.example.deleting.timkiemvieclam.ListScreen;
 import com.example.deleting.timkiemvieclam.R;
+import com.example.deleting.timkiemvieclam.model.Job;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -82,7 +86,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onClick(View v) {
                 System.exit(0);
-            }
+                            }
         });
         return rootView;
     }
@@ -104,7 +108,7 @@ public class Fragment1 extends Fragment {
 
             //Khai báo Bundle
             bundle = new Bundle();
-            bundle.putString("JobName", edtjobname);
+            bundle.putString("key", edtjobname);
             bundle.putString("idIndustry", idIndustry);
             bundle.putString("idLocation", idLocation);
             intent.putExtra("Mypack", bundle);
