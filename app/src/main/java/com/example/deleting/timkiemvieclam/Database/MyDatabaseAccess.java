@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.deleting.timkiemvieclam.model.Industry;
+import com.example.deleting.timkiemvieclam.model.Job;
 import com.example.deleting.timkiemvieclam.model.Location;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
     private static final String table_Location = "Locations";
     private static final String table_Industry = "Industrys";
     private static final String table_Job = "Job";
+    private static final String table_BookMark = "BookMark";
     //colum
 
     private static final String col_location_id = "location_id";
@@ -34,7 +36,6 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
 
     private static final String col_job_id = "job_id";
     private static final String col_job_title = "job_title";
-    private static final String col_job_worrking_type = "job_worrking_type";
     private static final String col_job_fromsalary = "job_fromsalary";
     private static final String col_job_tosalary = "job_tosalary";
     private static final String col_job_fromage = "job_fromage";
@@ -62,7 +63,14 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
 
     private static final String Create_table_Locations = "create table " + table_Location + "(" + col_location_id + " INTEGER PRIMARY KEY  , " + col_location_name + " nvarchar(50))";
     private static final String Create_table_Industry = "create table " + table_Industry + "(" + col_Industry_id + " INTEGER PRIMARY KEY , " + col_Industry_name + " nvarchar(50))";
-    private static final String Create_table_Job = "create table " + table_Job + "(" + col_job_id + " INTEGER PRIMARY KEY , " + col_job_title + " nvarchar(150) , " + col_job_worrking_type + " INTEGER , " + col_job_fromsalary + " float , " + col_job_tosalary + " float , " + col_job_fromage + " INTEGER , " + col_job_toage + " INTEGER , " + col_job_gender + " INTEGER , " + col_job_lastdate + " Date , " + col_job_content + " ntext , " + col_job_requireskill + " ntext , " + col_job_contact_company + " nvarchar(150) , " + col_job_contact_address + " nvarchar(150) , " + col_job_contact_email + " char(50) , " + col_job_contact_email2 + " char(50) , " + col_location + " nvarchar(50) , " + col_emp_desc + " ntext , " + col_emp_website + " char(50) , " + col_job_url + " char(100), " + col_date_view + " date ," + col_share_img + " char(100))";
+    private static final String Create_table_Job = "create table " + table_Job + "(" + col_job_id + " INTEGER PRIMARY KEY , " + col_job_title + " nvarchar(150) , "
+            + col_job_fromsalary + " float , " + col_job_tosalary + " float , " + col_job_fromage + " INTEGER , "
+            + col_job_toage + " INTEGER , " + col_job_gender + " INTEGER , " + col_job_lastdate + " Date , "
+            + col_job_content + " ntext , " + col_job_requireskill + " ntext , " + col_job_contact_company + " nvarchar(150) , "
+            + col_job_contact_address + " nvarchar(150) , " + col_job_contact_email + " char(50) , "
+            + col_job_contact_email2 + " char(50) , " + col_location + " nvarchar(50) , " + col_emp_desc + " ntext , "
+            + col_emp_website + " char(50) , " + col_job_url + " char(100), " + col_date_view + " date ," + col_share_img + " char(100))";
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -72,6 +80,7 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
         db.execSQL(Create_table_Locations);
         db.execSQL(Create_table_Industry);
         db.execSQL(Create_table_Job);
+        //db.execSQL(Create_table_BookMark);
     }
 
     @Override
@@ -79,7 +88,62 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + table_Location);
         db.execSQL("DROP TABLE IF EXISTS " + table_Industry);
         db.execSQL("DROP TABLE IF EXISTS " + table_Job);
+        //db.execSQL("DROP TABLE IF EXISTS " + table_BookMark);
         onCreate(db);
+    }
+
+    public boolean addJob(Job job) {
+        //Log.i(TAG, "MyDatabaseHelper.addNote ... " + note.getNoteTitle());
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(col_job_id, job.getJob_id());
+        values.put(col_job_title, job.getJob_title());
+        values.put(col_job_fromsalary, job.getJob_fromsalary());
+        values.put(col_job_tosalary, job.getJob_tosalary());
+        values.put(col_job_fromage, job.getJob_fromage());
+        values.put(col_job_toage, job.getJob_toage());
+        values.put(col_job_gender, job.getJob_gender());
+        values.put(col_job_lastdate, job.getJob_lastdate());
+        values.put(col_job_content, job.getJob_content());
+        values.put(col_job_requireskill, job.getJob_requireskill());
+        values.put(col_job_contact_company, job.getJob_contact_company());
+        values.put(col_job_contact_address, job.getJob_contact_address());
+        values.put(col_job_contact_email, job.getJob_contact_email());
+        values.put(col_job_contact_email2, job.getJob_contact_emai2());
+        values.put(col_location, job.getLocation_name());
+        values.put(col_emp_desc, job.getEmp_desc());
+        values.put(col_emp_website, job.getEmp_website());
+        values.put(col_job_url, job.getJob_url());
+        values.put(col_date_view, job.getDate_view());
+        values.put(col_share_img, job.getShare_img());
+        // Trèn một dòng dữ liệu vào bảng.
+
+
+        long rowId = db.insert(table_Job, null, values);
+        db.close();
+        if (rowId != -1)
+            return true;
+        return false;
+        // Đóng kết nối database.
+
+    }
+
+
+    public int getJobsCount() {
+        //Log.i(TAG, "MyDatabaseHelper.getNotesCount ... " );
+
+        String countQuery = "SELECT  * FROM " + table_Job;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+
+        int count = cursor.getCount();
+
+        cursor.close();
+
+        // return count
+        return count;
     }
 
     // ------------------------ "Location" table methods ----------------//
