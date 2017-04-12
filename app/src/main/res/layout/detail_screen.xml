@@ -4,14 +4,13 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -19,9 +18,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="3"
+            android:layout_weight="2"
             android:text="Đánh dấu bài viết:"
-            android:textSize="25dp" />
+            android:textStyle="bold"
+            android:textSize="20dp" />
 
         <CheckBox
             android:id="@+id/cbSave"
@@ -36,7 +36,7 @@
         <Button
             android:id="@+id/btnHome"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Home" />
 
@@ -45,21 +45,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9"
+        android:layout_weight="10"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txtTenCongViec"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Tên Công Việc"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="20dp"
@@ -67,52 +65,52 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5">
+                    android:layout_weight="1.5"
+
+                    >
 
                     <ImageView
                         android:id="@+id/imgLogo"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
                         android:paddingRight="5dp"
-                        android:src="@mipmap/ic_launcher" />
+                        android:layout_marginTop="5dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:scaleType="fitStart"
+                        />
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
-
 
                         <TextView
                             android:id="@+id/txtTenCongTy"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
                             android:text="Tên Công Ty"
                             android:textColor="@android:color/holo_blue_dark"
-                            android:textSize="20dp"
+                            android:textSize="18dp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -123,127 +121,103 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginLeft="5dp"
                             android:text="Location:"
                             android:textColor="@android:color/black"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/txtLocation"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
                             android:hint="Parser"
                             android:textColor="@android:color/black" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <ImageView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left">
+                            android:src="@drawable/ic_money" />
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_money" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="Salary:"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="Salary:"
-                                android:textColor="@android:color/black"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txtSalary"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="10dp"
-                                android:hint="Parser"
-                                android:textColor="@android:color/black" />
-
-                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/txtSalary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:hint="Parser"
+                            android:textColor="@android:color/black" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <ImageView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1">
+                            android:src="@drawable/ic_calendar" />
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_calendar" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="Date Update:"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold" />
 
-                            <TextView
+                        <TextView
+                            android:id="@+id/txtDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:hint="Parser"
+                            android:textColor="@android:color/black" />
 
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="Date Update:"
-                                android:textColor="@android:color/black"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txtDate"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="10dp"
-                                android:hint="Parser"
-                                android:textColor="@android:color/black" />
-                        </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <ImageView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1">
+                            android:src="@drawable/ic_calendar" />
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/ic_calendar" />
+                        <TextView
 
-                            <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="Last Date:"
+                            android:textColor="@android:color/black"
+                            android:textStyle="bold" />
 
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="Last Date:"
-                                android:textColor="@android:color/black"
-                                android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/txtLastDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:hint="Parser"
+                            android:textColor="@android:color/black" />
 
-                            <TextView
-                                android:id="@+id/txtLastDate"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginLeft="10dp"
-                                android:hint="Parser"
-                                android:textColor="@android:color/black" />
-                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -254,8 +228,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4">
+            android:layout_height="wrap_content"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -323,10 +297,12 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginTop="3dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/textView"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -346,6 +322,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginTop="3dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -369,6 +346,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginTop="3dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -376,7 +354,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Email Công Ty:"
+                            android:text="Email Cty:"
                             android:textColor="@android:color/black"
                             android:textStyle="bold" />
 
@@ -392,6 +370,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginTop="3dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -414,6 +393,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginTop="3dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -437,6 +417,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginTop="3dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -461,6 +442,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginTop="3dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
@@ -485,6 +467,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
+                        android:layout_marginTop="3dp"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
