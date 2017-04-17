@@ -5,22 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    >
 
     <LinearLayout
+        android:background="#67c2ed"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
 
         <TextView
+            android:paddingLeft="10dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="2"
             android:text="Đánh dấu bài viết:"
             android:textStyle="bold"
+            android:textColor="#fff"
             android:textSize="20dp" />
 
         <CheckBox
@@ -28,17 +30,23 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="-20dp"
             android:layout_weight="1"
             android:text="Lưu"
+            android:textColor="#fff"
             android:textSize="20dp" />
 
         <Button
+            android:background="@drawable/khung_tron"
             android:id="@+id/btnHome"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Home" />
+            android:textColor="#fff"
+            android:text="Home"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            />
 
     </LinearLayout>
 
@@ -46,7 +54,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"

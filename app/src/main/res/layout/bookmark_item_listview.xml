@@ -5,11 +5,13 @@
     android:orientation="horizontal">
 
     <LinearLayout
+        android:paddingLeft="10dp"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1.5">
 
         <ImageView
+            android:layout_marginTop="15dp"
             android:id="@+id/imvLogo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -20,6 +22,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="4"
@@ -199,7 +202,8 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="0.75"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingRight="10dp">
 
         <CheckBox
             android:id="@+id/chkDelete"

@@ -2,14 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#67c2ed"
     android:orientation="vertical"
     android:padding="15dp">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="-100dp"
+        android:layout_marginTop="-75dp"
+        android:src="@drawable/logo1" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -17,15 +25,19 @@
             android:id="@+id/edtJobName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Input Company Name"
+            android:background="@drawable/khung_tron"
+            android:hint="Enter company name"
             android:inputType="text"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:textColor="#fff"
+            android:textColorHint="#fff" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/khung_tron"
         android:gravity="center">
 
         <Spinner
@@ -37,21 +49,25 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="35dp"
+        android:gravity="bottom"
+        android:orientation="horizontal">
 
         <LinearLayout
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
+            android:layout_weight="1">
 
             <Button
                 android:id="@+id/btnFind"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Find" />
+                android:layout_marginRight="10dp"
+                android:background="@drawable/khung_tron"
+                android:text="Find"
+                android:textColor="#fff" />
         </LinearLayout>
 
         <LinearLayout
@@ -62,9 +78,12 @@
 
             <Button
                 android:id="@+id/btnExit"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Exit" />
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/khung_tron"
+                android:text="Exit"
+                android:textColor="#fff" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
