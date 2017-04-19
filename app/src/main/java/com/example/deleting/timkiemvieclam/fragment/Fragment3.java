@@ -23,9 +23,7 @@ import java.util.List;
 
 public class Fragment3 extends Fragment {
     String arrayLocation[] = {"Lương", "Ngày"};
-    String arraySort[] = {"1-20", "20-40", "40-60"};
     Spinner spnlocation;
-    Spinner spnslnews;
     ListView lv;
     ArrayList<Job> mangLV;
     BookMarkAdapter adapter;
@@ -47,14 +45,6 @@ public class Fragment3 extends Fragment {
         );
         adaptersort.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spnlocation.setAdapter(adaptersort);
-
-           /*--------------------------------------*/
-        spnslnews = (Spinner) rootView.findViewById(R.id.spnslnews);
-        ArrayAdapter<String> adapternews = new ArrayAdapter<String>(
-                getActivity().getBaseContext(), android.R.layout.simple_spinner_item, arraySort
-        );
-        adapternews.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-        spnslnews.setAdapter(adapternews);
 
         List<Job> contacts = db.getAllJob();
         mangLV = new ArrayList<>();
