@@ -19,6 +19,8 @@ import com.example.deleting.timkiemvieclam.DetailScreen;
 import com.example.deleting.timkiemvieclam.ListScreen;
 import com.example.deleting.timkiemvieclam.R;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,6 +41,7 @@ public class Fragment2 extends Fragment {
     Intent intent;
     Bundle bundle;
 
+    URI uri = null;
     public Fragment2() {
     }
 
@@ -85,24 +88,25 @@ public class Fragment2 extends Fragment {
         String edtjobname = edtJobName.getText().toString();
         edtjobname.trim();
 
+        try {
+            uri = new URI(edtjobname.replaceAll(" ", "%20"));
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         pattern = Pattern.compile(JOB_NAME);
         matcher = pattern.matcher(edtjobname);
 
         if (matcher.matches() == false) {
-            if(edtjobname.length() <= 3){
-                edtJobName.setError("Mời bạn nhập lại");
-                edtJobName.requestFocus();
-            }else {
-                edtJobName.setError("Có ký tự đặc biệt. Mời bạn nhập lại");
-                edtJobName.requestFocus();
-            }
+            edtJobName.setError("Có Kí tự đặc biệt. Mời bạn nhập lại!");
+            edtJobName.requestFocus();
         } else {
             intent = new Intent(getActivity(), ListScreen.class);
 
             //Khai báo Bundle
             bundle = new Bundle();
-            bundle.putString("key", edtjobname);
+            bundle.putString("key", String.valueOf(uri));
             bundle.putString("idIndustry", "");
             bundle.putString("idLocation", idLocation);
             intent.putExtra("Mypack", bundle);

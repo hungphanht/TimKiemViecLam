@@ -1,5 +1,6 @@
 package com.example.deleting.timkiemvieclam;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -57,6 +58,14 @@ public class ListScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_screen);
 
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.custom_action_bar);
+
+        View view =getSupportActionBar().getCustomView();
+        TextView tvTitle = (TextView) findViewById(R.id.lvListJob);
+        tvTitle.setText("Danh Sách Công Việc");
+
         lv = (ListView) findViewById(R.id.listViewDanhSach);
         mangLV = new ArrayList<Job>();
 
@@ -94,14 +103,13 @@ public class ListScreen extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                new LoadDialogDetailScreen().execute();
+                Intent intent = new Intent(ListScreen.this, DetailScreen.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("key", mangLV.get(position).job_id);
+                intent.putExtra("Mypack", bundle);
+                startActivity(intent);
             }
         });
-    }
-
-    public void test(){
-
-
     }
 
     private String Parsejson(String input) {
@@ -307,42 +315,4 @@ public class ListScreen extends AppCompatActivity {
         }
     }
 
-    private class LoadDialogDetailScreen extends AsyncTask<Void, Void, String>{
-
-        ProgressDialog Dialog;
-        int position;
-
-        @Override
-        protected void onPreExecute() {
-            //Hiển thị Dialog loading...
-            Dialog = new ProgressDialog(ListScreen.this);
-            Dialog.setTitle("Please Wait");
-            Dialog.setMessage("Loading...");
-            Dialog.setCancelable(false);
-            Dialog.show();
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String avoid) {
-
-            //Toast.makeText(ListScreen.this, "Load Xong", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(ListScreen.this, DetailScreen.class);
-            Bundle bundle = new Bundle();
-            bundle.putInt("key", mangLV.get(position).job_id);
-            intent.putExtra("Mypack", bundle);
-            startActivity(intent);
-            Dialog.cancel();
-
-        }
-    }
 }

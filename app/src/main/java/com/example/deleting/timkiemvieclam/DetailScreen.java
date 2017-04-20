@@ -1,9 +1,12 @@
 package com.example.deleting.timkiemvieclam;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Handler;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -20,6 +23,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
+import com.example.deleting.timkiemvieclam.Util.ConnectivityReceiver;
+import com.example.deleting.timkiemvieclam.Util.Initialization;
+import com.example.deleting.timkiemvieclam.adapter.ListAdapter;
 import com.example.deleting.timkiemvieclam.model.Job;
 import com.squareup.picasso.Picasso;
 
@@ -65,13 +71,20 @@ public class DetailScreen extends AppCompatActivity {
     Button Home;
     MyDatabaseAccess db = new MyDatabaseAccess(this);
     String fromSalary, toSalary, fromAge, toAge, linkImage, salaryUnit;
-    int Gender;
-    String mangLV;
+    int Gender,key;
+    String data, apisearch;
+    private static int SPLASH_TIME_OUT = 3000;
+    public static String message;
+    private static int tmp_check;
+    private static Initialization initialization;
+    final Bundle bundle = new Bundle();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_screen);
+
+
 
         txtTenCongViec = (TextView) findViewById(R.id.txtTenCongViec);
         txtTenCongTy = (TextView) findViewById(R.id.txtTenCongTy);
@@ -98,11 +111,11 @@ public class DetailScreen extends AppCompatActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.custom_action_bar);
 
-        View view =getSupportActionBar().getCustomView();
+        View view = getSupportActionBar().getCustomView();
         TextView tvTitle = (TextView) findViewById(R.id.lvListJob);
         tvTitle.setText("Chi Tiết Công Việc");
 
-        ImageButton imageButton= (ImageButton)view.findViewById(R.id.action_bar_back);
+        ImageButton imageButton = (ImageButton) view.findViewById(R.id.action_bar_back);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,25 +127,14 @@ public class DetailScreen extends AppCompatActivity {
         //có intent rồi thì lấy Bundle dựa vào MyPackage
         Bundle packageFromCaller =
                 callerIntent.getBundleExtra("Mypack");
-        final int key = packageFromCaller.getInt("key");
+        key = packageFromCaller.getInt("key");
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        String apisearch = "http://api.careerbuilder.vn/?method=getJobDetail&token=a5ab26bde79eb7db6198530ddaff3e236&job_id=" + key;
-        String input = "";
-        try {
-            input = downloadUrl(apisearch);
-            //Log.e("test", "da o day");
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            //Log.e("test", "Loi o day");
-            e.printStackTrace();
-        }
-        //Log.d("test", "Day la output: " + input);
-        String data = GetJson(input);
-        Parsejson(data);
 
+
+        new LoadDialog().execute();
 
 
         txtWebsite.setOnClickListener(new View.OnClickListener() {
@@ -199,6 +201,38 @@ public class DetailScreen extends AppCompatActivity {
                 });
                 builder.setCancelable(false);
                 builder.show();
+            }
+        });
+
+        Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ConnectivityReceiver sconn = new ConnectivityReceiver();
+                initialization = new Initialization();
+                if (tmp_check != 1) {
+                    initialization.Create(DetailScreen.this);
+                    Log.d("test", "data ban đã được tạo");
+                    tmp_check = 1;
+                } else {
+                    Log.d("test", "data ban đã được tạo, không thể tạo lại");
+                }
+
+                boolean checkconn = sconn.isConnected(DetailScreen.this);
+                bundle.putBoolean("check", checkconn);
+                if (checkconn == true) {
+                    Log.d("test", "connected");
+                } else {
+                    Log.d("test", "not connected");
+                }
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(DetailScreen.this, MainActivity.class);
+                        intent.putExtra("data", bundle);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, 0);
             }
         });
 
@@ -390,5 +424,52 @@ public class DetailScreen extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    private class LoadDialog extends AsyncTask<Void, Void, String> {
 
+        ProgressDialog Dialog;
+        int position;
+
+        @Override
+        protected void onPreExecute() {
+            apisearch = "http://api.careerbuilder.vn/?method=getJobDetail&token=a5ab26bde79eb7db6198530ddaff3e236&job_id=" + key;
+
+            //Hiển thị Dialog loading...
+            Dialog = new ProgressDialog(DetailScreen.this);
+            Dialog.setTitle("Please Wait");
+            Dialog.setMessage("Loading...");
+            Dialog.setCancelable(false);
+            Dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String input = "";
+            try {
+                input = downloadUrl(apisearch);
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //Log.e("test", "da o day");
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                //Log.e("test", "Loi o day");
+                e.printStackTrace();
+            }
+            //Log.d("test", "Day la output: " + input);
+            data = GetJson(input);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String avoid) {
+
+            Parsejson(data);
+            Toast.makeText(DetailScreen.this, "Load Xong", Toast.LENGTH_SHORT).show();
+
+            Dialog.cancel();
+
+        }
+    }
 }

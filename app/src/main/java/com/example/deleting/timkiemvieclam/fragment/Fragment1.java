@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
 import com.example.deleting.timkiemvieclam.DetailScreen;
@@ -22,13 +23,15 @@ import com.example.deleting.timkiemvieclam.ListScreen;
 import com.example.deleting.timkiemvieclam.R;
 import com.example.deleting.timkiemvieclam.model.Job;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Fragment1 extends Fragment {
-    private static final String JOB_NAME = "^[á à ả ã ạ ă â ê ô ơ ư Ă Â Ê Ô Ơ Ư ắ ằ ẳ ẵ ặ ấ ầ ẩ ẫ ậ ế ề ể ễ ệ é è ẻ ẽ ẹ í ì ỉ ĩ ị ó ò ỏ õ ọ ố ồ ổ ỗ ộ ớ ờ ở ỡ ợ ú ù ủ ũ ụ ứ ừ ử ữ ự ý ỳ ỷ ỹ ỵ đA-Za-z0-9]{0,50}$";
+    private static final String JOB_NAME = "^[á à ả ã ạ ă â ê ô ơ ư Ă Â Ê Ô Ơ Ư ắ ằ ẳ ẵ ặ ấ ầ ẩ ẫ ậ ế ề ể ễ ệ é è ẻ ẽ ẹ í ì ỉ ĩ ị ó ò ỏ õ ọ ố ồ ổ ỗ ộ ớ ờ ở ỡ ợ ú ù ủ ũ ụ ứ ừ ử ữ ự ý ỳ ỷ ỹ ỵ  đA-Za-z0-9]{0,50}$";
     private Pattern pattern;
     private Matcher matcher;
     MyDatabaseAccess db;
@@ -43,6 +46,7 @@ public class Fragment1 extends Fragment {
     String idIndustry = "";
     String idLocation = "";
 
+    URI uri = null;
     public Fragment1() {
     }
 
@@ -84,7 +88,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onClick(View v) {
                 System.exit(0);
-                            }
+            }
         });
         return rootView;
     }
@@ -93,6 +97,13 @@ public class Fragment1 extends Fragment {
     public void Check() {
         String edtjobname = edtJobName.getText().toString();
         edtjobname.trim();
+
+        try {
+            uri = new URI(edtjobname.replaceAll(" ", "%20"));
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         pattern = Pattern.compile(JOB_NAME);
         matcher = pattern.matcher(edtjobname);
@@ -103,10 +114,10 @@ public class Fragment1 extends Fragment {
         } else {
 
             intent = new Intent(getActivity(), ListScreen.class);
-
+            edtjobname.replaceAll(" ", "%20");
             //Khai báo Bundle
             bundle = new Bundle();
-            bundle.putString("key", edtjobname);
+            bundle.putString("key", String.valueOf(uri));
             bundle.putString("idIndustry", idIndustry);
             bundle.putString("idLocation", idLocation);
             intent.putExtra("Mypack", bundle);
