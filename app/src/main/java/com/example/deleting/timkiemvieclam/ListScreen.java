@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import com.example.deleting.timkiemvieclam.adapter.ListAdapter;
 import com.example.deleting.timkiemvieclam.model.Job;
@@ -65,6 +66,14 @@ public class ListScreen extends AppCompatActivity {
         View view =getSupportActionBar().getCustomView();
         TextView tvTitle = (TextView) findViewById(R.id.lvListJob);
         tvTitle.setText("Danh Sách Công Việc");
+		
+		ImageButton imageButton = (ImageButton) view.findViewById(R.id.action_bar_back);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         lv = (ListView) findViewById(R.id.listViewDanhSach);
         mangLV = new ArrayList<Job>();
