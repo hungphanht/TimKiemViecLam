@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.deleting.timkiemvieclam.adapter.SlidingMenuAdapter;
@@ -97,12 +99,6 @@ public class MainActivity extends ActionBarActivity {
             };
 
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
-        }
-
-        @Override
-        public boolean onCreateOptionsMenu (Menu menu){
-            getMenuInflater().inflate(R.menu.main_menu, menu);
-            return true;
         }
 
         @Override

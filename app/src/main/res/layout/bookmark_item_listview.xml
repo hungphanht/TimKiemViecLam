@@ -5,16 +5,16 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:paddingLeft="10dp"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1.5">
+        android:layout_weight="1.5"
+        android:paddingLeft="10dp">
 
         <ImageView
-            android:layout_marginTop="15dp"
             android:id="@+id/imvLogo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
             android:paddingRight="5dp"
             android:scaleType="fitStart"
             android:src="@mipmap/ic_launcher" />
@@ -22,9 +22,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_weight="4"
         android:orientation="vertical">
 
@@ -160,42 +160,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_calendar" />
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="Job ID:"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvJobID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:hint="Parser"
-                    android:textColor="@android:color/black" />
-            </LinearLayout>
-        </LinearLayout>
-
     </LinearLayout>
 
     <LinearLayout
@@ -209,7 +173,11 @@
             android:id="@+id/chkDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#0199cc" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="#0199cc"
+            android:focusable="false"
+            android:focusableInTouchMode="false"/>
 
     </LinearLayout>
 

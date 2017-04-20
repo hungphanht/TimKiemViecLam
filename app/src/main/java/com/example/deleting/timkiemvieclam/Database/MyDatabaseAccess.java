@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.example.deleting.timkiemvieclam.model.Industry;
 import com.example.deleting.timkiemvieclam.model.Job;
@@ -54,6 +56,10 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
     private static final String col_job_url = "job_url";
     private static final String col_date_view = "date_view";
     private static final String col_share_img = "share_img";
+    private static final String col_salary_unit = "salary_unit";
+    private static final String col_job_contact_name = "job_contact_name";
+    private static final String col_job_addsalary = "job_addsalary";
+    private static final String col_job_contact_phone = "job_contact_phone";
     Context context;
 
     public MyDatabaseAccess(Context context) {
@@ -69,7 +75,9 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
             + col_job_content + " ntext , " + col_job_requireskill + " ntext , " + col_job_contact_company + " nvarchar(150) , "
             + col_job_contact_address + " nvarchar(150) , " + col_job_contact_email + " char(50) , "
             + col_job_contact_email2 + " char(50) , " + col_location + " nvarchar(50) , " + col_emp_desc + " ntext , "
-            + col_emp_website + " char(50) , " + col_job_url + " char(100), " + col_date_view + " date ," + col_share_img + " char(100))";
+            + col_emp_website + " char(100) , " + col_job_url + " char(100), " + col_date_view + " date, "
+            + col_share_img + " char(100), " + col_salary_unit + " char(50), " + col_job_contact_name + " nvarchar(100), "
+            + col_job_addsalary + " nvarchar(150), " + col_job_contact_phone + " char(50))";
 
 
     @Override
@@ -118,6 +126,10 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
         values.put(col_job_url, job.getJob_url());
         values.put(col_date_view, job.getDate_view());
         values.put(col_share_img, job.getShare_img());
+        values.put(col_salary_unit, job.getSalary_unit());
+        values.put(col_job_contact_name, job.getJob_contact_name());
+        values.put(col_job_addsalary, job.getJob_addsalary());
+        values.put(col_job_contact_phone, job.getJob_contact_phone());
         // Trèn một dòng dữ liệu vào bảng.
 
 
@@ -166,6 +178,10 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
                 job.setJob_url(cursor.getString(17));
                 job.setDate_view(cursor.getString(18));
                 job.setShare_img(cursor.getString(19));
+                job.setSalary_unit(cursor.getString(20));
+                job.setJob_contact_name(cursor.getString(21));
+                job.setJob_addsalary(cursor.getString(22));
+                job.setJob_contact_phone(cursor.getString(23));
                 // Thêm vào danh sách.
                 jobList.add(job);
             } while (cursor.moveToNext());
@@ -174,8 +190,12 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
         // return note list
         return jobList;
     }
-
-
+    
+    public Integer deleteContact (Integer id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(table_Job, col_job_id + " = ?",
+                new String[] { Integer.toString(id) });
+    }
 
     public int getJobsCount() {
         //Log.i(TAG, "MyDatabaseHelper.getNotesCount ... " );
@@ -374,5 +394,6 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
     boolean isDatabaseExist() {
         return (db != null);
     }
+
 
 }

@@ -28,8 +28,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Fragment1 extends Fragment {
-    final String DB_NAME = "myjob.db";
-    SQLiteDatabase database;
     private static final String JOB_NAME = "^[á à ả ã ạ ă â ê ô ơ ư Ă Â Ê Ô Ơ Ư ắ ằ ẳ ẵ ặ ấ ầ ẩ ẫ ậ ế ề ể ễ ệ é è ẻ ẽ ẹ í ì ỉ ĩ ị ó ò ỏ õ ọ ố ồ ổ ỗ ộ ớ ờ ở ỡ ợ ú ù ủ ũ ụ ứ ừ ử ữ ự ý ỳ ỷ ỹ ỵ đA-Za-z0-9]{0,50}$";
     private Pattern pattern;
     private Matcher matcher;
@@ -159,4 +157,3 @@ public class Fragment1 extends Fragment {
 
 
 }
-

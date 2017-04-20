@@ -69,7 +69,12 @@ public class ListAdapter extends ArrayAdapter<Job> {
             if (p.job_fromsalary == 0 && p.job_tosalary == 0) {
                 txt4.setText("Lương Thỏa Thuận");
             } else {
-                txt4.setText(String.valueOf(p.job_fromsalary) + " - " + String.valueOf(p.job_tosalary));
+                if (p.salary_unit == null)
+                {
+                    txt4.setText(String.valueOf(p.job_fromsalary) + " - " + String.valueOf(p.job_fromsalary) + " vnd");
+                } else {
+                    txt4.setText(String.valueOf(p.job_fromsalary) + " - " + String.valueOf(p.job_fromsalary) + " " + p.salary_unit);
+                }
             }
 
             TextView txt5 = (TextView) view.findViewById(R.id.tvDate);

@@ -3,11 +3,13 @@ package com.example.deleting.timkiemvieclam;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -54,6 +56,23 @@ public class ListScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_screen);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.custom_action_bar);
+
+        View view =getSupportActionBar().getCustomView();
+        TextView tvTitle = (TextView) findViewById(R.id.lvListJob);
+        tvTitle.setText("Danh Sách Công Việc");
+
+        ImageButton imageButton= (ImageButton)view.findViewById(R.id.action_bar_back);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         lv = (ListView) findViewById(R.id.listViewDanhSach);
         //imgtest = (ImageView) findViewById(R.id.imgTest);
         mangLV = new ArrayList<Job>();
@@ -275,5 +294,10 @@ public class ListScreen extends AppCompatActivity {
             }
         }
         return data;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

@@ -39,6 +39,7 @@
         </activity>
         <activity android:name=".ListScreen"></activity>
         <activity android:name=".DetailScreen"></activity>
+        <activity android:name=".Detail_Offline_Screen"></activity>
     </application>
 
 </manifest>

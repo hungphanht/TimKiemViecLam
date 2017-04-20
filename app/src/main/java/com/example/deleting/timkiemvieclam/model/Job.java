@@ -29,7 +29,10 @@ public class Job {
     public String job_url;//link bai dang tren careerbuilder
     public String date_view;// ngay cap nhat bai viet;
     public String share_img;//link logo cong ty
-
+    public String salary_unit;//don vi tien te
+    public String job_contact_name;//ten nguoi lien he
+    public String job_addsalary;// Ưu đãi
+    public String job_contact_phone;// so dien thoai
 
     public Job(String job_title, String job_contact_company, String location_name, long job_fromsalary, long job_tosalary, String date_view, int job_id, String share_img) {
         this.job_title = job_title;
@@ -46,7 +49,6 @@ public class Job {
     public Job() {
 
     }
-
 
 
 //
@@ -232,5 +234,37 @@ public class Job {
 
     public void setShare_img(String share_img) {
         this.share_img = share_img;
+    }
+
+    public String getSalary_unit() {
+        return salary_unit;
+    }
+
+    public void setSalary_unit(String salary_unit) {
+        this.salary_unit = salary_unit;
+    }
+
+    public String getJob_contact_name() {
+        return job_contact_name;
+    }
+
+    public void setJob_contact_name(String job_contact_name) {
+        this.job_contact_name = job_contact_name;
+    }
+
+    public String getJob_addsalary() {
+        return job_addsalary;
+    }
+
+    public void setJob_addsalary(String job_addsalary) {
+        this.job_addsalary = job_addsalary;
+    }
+
+    public String getJob_contact_phone() {
+        return job_contact_phone;
+    }
+
+    public void setJob_contact_phone(String job_contact_phone) {
+        this.job_contact_phone = job_contact_phone;
     }
 }

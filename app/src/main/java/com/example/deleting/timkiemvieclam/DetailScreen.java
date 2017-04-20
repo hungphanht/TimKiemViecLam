@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.StrictMode;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.util.Xml;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +64,7 @@ public class DetailScreen extends AppCompatActivity {
     CheckBox cbSave;
     Button Home;
     MyDatabaseAccess db = new MyDatabaseAccess(this);
-    String fromSalary, toSalary, fromAge, toAge, linkImage;
+    String fromSalary, toSalary, fromAge, toAge, linkImage, salaryUnit;
     int Gender;
     String mangLV;
 
@@ -92,6 +94,22 @@ public class DetailScreen extends AppCompatActivity {
         cbSave = (CheckBox) findViewById(R.id.cbSave);
         Home = (Button) findViewById(R.id.btnHome);
 
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.custom_action_bar);
+
+        View view =getSupportActionBar().getCustomView();
+        TextView tvTitle = (TextView) findViewById(R.id.lvListJob);
+        tvTitle.setText("Chi Tiết Công Việc");
+
+        ImageButton imageButton= (ImageButton)view.findViewById(R.id.action_bar_back);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         Intent callerIntent = getIntent();
         //có intent rồi thì lấy Bundle dựa vào MyPackage
         Bundle packageFromCaller =
@@ -114,6 +132,8 @@ public class DetailScreen extends AppCompatActivity {
         //Log.d("test", "Day la output: " + input);
         String data = GetJson(input);
         Parsejson(data);
+
+
 
         txtWebsite.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,6 +183,10 @@ public class DetailScreen extends AppCompatActivity {
                         jobs.setJob_url(txtLink.getText().toString());
                         jobs.setDate_view(txtDate.getText().toString());
                         jobs.setShare_img(linkImage);
+                        jobs.setSalary_unit(salaryUnit);
+                        jobs.setJob_contact_name(txtNguoiLH.getText().toString());
+                        jobs.setJob_addsalary(txtUuDai.getText().toString());
+                        jobs.setJob_contact_phone(txtPhone.getText().toString());
                         db.addJob(jobs);
                     }
                 });
@@ -186,15 +210,16 @@ public class DetailScreen extends AppCompatActivity {
                 /**/
         try {
             JSONObject obj = new JSONObject(input);
-            String job_content = obj.getString("JOB_CONTENT").replace("*", "\r\n* ").replace("<strong>", "").replace("</strong>", "").replace("<p>", "").replace("</p>", "").replace("<br/>", "").replace("<ul>", "").replace("</ul>", "").replace("<li>", "").replace("</li>", "").replace("<p style=\"text-align:justify\">", "").replace("&amp;", "").replace("<ol>", "").replace("</ol>", "").replace("<em>", "").replace("</em>", "").replace("+", "\r\n+").replace("&lt;", "(").replace("&gt;", ")").replace(":-", ":\r\n- ").replace(".-", ".\r\n- ");
-            String job_requireskill = obj.getString("JOB_REQUIRESKILL").replace("*", "\r\n* ").replace("<br/>", "").replace("<ul>", "").replace("</ul>", "").replace("<li>", "").replace("</li>", "").replace("<p>", "").replace("</p>", "").replace("<em>", "").replace("</em>", "").replace("<strong>", "").replace("</strong>", "").replace(":&nbsp;", "").replace("&nbsp", "").replace("&amp;", "").replace(";", "").replace(";-", "\r\n-").replace("+", "\r\n+").replace(":-", ":\r\n- ").replace(".-", ".\r\n- ");
-            String emp_desc = obj.getString("EMP_DESC").replace("*", "\r\n* ").replace("<br/>", "").replace("<ul>", "").replace("</ul>", "").replace("<li>", "").replace("</li>", "").replace("<p>", "").replace("</p>", "").replace("<em>", "").replace("</em>", "").replace("<strong>", "").replace("</strong>", "").replace(":&nbsp;", "").replace("&nbsp", "").replace("&amp;", "").replace(";", "").replace(";-", "\r\n-").replace("+", "\r\n+").replace(":-", ":\r\n- ").replace(".-", ".\r\n- ");
+            String job_content = obj.getString("JOB_CONTENT").replace("*", "\r\n* ").replace("<strong>", "").replace("</strong>", "").replace("<p>", "").replace("</p>", "").replace("<br/>", "").replace("<ul>", "").replace("</ul>", "").replace("<li>", "").replace("</li>", "").replace("<p style=\"text-align:justify\">", "").replace("&amp;", "").replace("<ol>", "").replace("</ol>", "").replace("<em>", "").replace("</em>", "").replace("+", "\r\n+").replace("&lt;", "(").replace("&gt;", ")").replace(":-", ":\r\n- ").replace(".-", ".\r\n- ").replace("<br />", "");
+            String job_requireskill = obj.getString("JOB_REQUIRESKILL").replace("*", "\r\n* ").replace("<br/>", "").replace("<ul>", "").replace("</ul>", "").replace("<li>", "").replace("</li>", "").replace("<p>", "").replace("</p>", "").replace("<em>", "").replace("</em>", "").replace("<strong>", "").replace("</strong>", "").replace(":&nbsp;", "").replace("&nbsp", "").replace("&amp;", "").replace(";", "").replace(";-", "\r\n-").replace("+", "\r\n+").replace(":-", ":\r\n- ").replace(".-", ".\r\n- ").replace("<br />", "");
+            String emp_desc = obj.getString("EMP_DESC").replace("*", "\r\n* ").replace("<br/>", "").replace("<ul>", "").replace("</ul>", "").replace("<li>", "").replace("</li>", "").replace("<p>", "").replace("</p>", "").replace("<em>", "").replace("</em>", "").replace("<strong>", "").replace("</strong>", "").replace(":&nbsp;", "").replace("&nbsp", "").replace("&amp;", "").replace(";", "").replace(";-", "\r\n-").replace("+", "\r\n+").replace(":-", ":\r\n- ").replace(".-", ".\r\n- ").replace("<br />", "").replace("$ndash", "");
             fromSalary = obj.getString("JOB_FROMSALARY");
             toSalary = obj.getString("JOB_TOSALARY");
             fromAge = obj.getString("JOB_FROMAGE");
             toAge = obj.getString("JOB_TOAGE");
             Gender = obj.getInt("JOB_GENDER");
             linkImage = obj.get("SHARE_IMG").toString();
+            salaryUnit = obj.getString("JOB_SALARYUNIT").replace("1", "");
 
             //kiểm tra xem có tồn tại thuộc tính id hay không
             if (obj.has("JOB_TITLE"))
@@ -206,8 +231,13 @@ public class DetailScreen extends AppCompatActivity {
             if (obj.has("LOCATION_NAME"))
                 txtLocation.setText(obj.getString("LOCATION_NAME"));
 
-            if (obj.has("JOB_FROMSALARY"))
-                txtSalary.setText(fromSalary + " - " + toSalary + " " + obj.getString("JOB_SALARYUNIT"));
+            if (obj.has("JOB_FROMSALARY")) {
+                if (fromSalary.equals("0") && toSalary.equals("0")) {
+                    txtSalary.setText("Lương Thỏa Thuận");
+                } else {
+                    txtSalary.setText(fromSalary + " - " + toSalary + " " + salaryUnit);
+                }
+            }
 
             if (obj.has("DATE_VIEW"))
                 txtDate.setText(obj.getString("DATE_VIEW"));
@@ -354,4 +384,11 @@ public class DetailScreen extends AppCompatActivity {
         }
         return data;
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+
 }
