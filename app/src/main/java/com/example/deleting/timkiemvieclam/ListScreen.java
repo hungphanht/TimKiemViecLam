@@ -1,18 +1,19 @@
 package com.example.deleting.timkiemvieclam;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.deleting.timkiemvieclam.adapter.ListAdapter;
 import com.example.deleting.timkiemvieclam.model.Job;
@@ -42,39 +43,21 @@ public class ListScreen extends AppCompatActivity {
     String arraySort[] = {"1-20", "20-40", "40-60"};
     Spinner spnlocation;
     Spinner spnslnews;
-    ListView lv;
-    ArrayList<Job> mangLV;
-    ListAdapter adapter;
+    static ListView lv;
+    static ArrayList<Job> mangLV;
+    static ListAdapter adapter;
     String apisearch;
-    int Job_ID;
-    String logo;
-
-    String apilogo;
-    TextView tvtest;
+    static int Job_ID;
+    static String logo;
+    static String apilogo;
+    String key,idIndustry, idLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_screen);
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.custom_action_bar);
-
-        View view =getSupportActionBar().getCustomView();
-        TextView tvTitle = (TextView) findViewById(R.id.lvListJob);
-        tvTitle.setText("Danh Sách Công Việc");
-
-        ImageButton imageButton= (ImageButton)view.findViewById(R.id.action_bar_back);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
         lv = (ListView) findViewById(R.id.listViewDanhSach);
-        //imgtest = (ImageView) findViewById(R.id.imgTest);
         mangLV = new ArrayList<Job>();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
@@ -85,28 +68,12 @@ public class ListScreen extends AppCompatActivity {
         //có intent rồi thì lấy Bundle dựa vào MyPackage
         Bundle packageFromCaller =
                 callerIntent.getBundleExtra("Mypack");
-        String key = packageFromCaller.getString("key");
-        String idIndustry = packageFromCaller.getString("idIndustry");
-        String idLocation = packageFromCaller.getString("idLocation");
+         key = packageFromCaller.getString("key");
+         idIndustry = packageFromCaller.getString("idIndustry");
+         idLocation = packageFromCaller.getString("idLocation");
 
-        if (idIndustry == "") {
-            apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"location\":\"" + idLocation + "\"}";
-        } else {
-            apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"industry\":\"" + idIndustry + "\",\"location\":\"" + idLocation + "\"}";
-        }
+        new LoadDialog().execute();
 
-        String input = "";
-        try {
-            input = downloadUrl(apisearch);
-            Log.e("test", "da o day");
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            //Log.e("test", "Loi o day");
-            e.printStackTrace();
-        }
-
-        String data = GetJson(input);
-        Parsejson(data);
 
 
         spnlocation = (Spinner) findViewById(R.id.spnlocation);
@@ -136,13 +103,16 @@ public class ListScreen extends AppCompatActivity {
         });
     }
 
-    public void Parsejson(String input) {
+    public void test(){
+
+
+    }
+
+    private String Parsejson(String input) {
         Log.d("test", input);
         String locationName, JobTitName, DateView;
 
-        if (input.isEmpty()) {
-            return;
-        }
+
 
         try {
             JSONArray arr = new JSONArray(input);
@@ -182,20 +152,14 @@ public class ListScreen extends AppCompatActivity {
                 //Log.d("test","Logooooooooooo" + obj.get("SHARE_IMG"));
             }
 
-            adapter = new ListAdapter(
-                    getApplicationContext(),
-                    R.layout.item_listview,
-                    mangLV
-            );
-            lv.setAdapter(adapter);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
+        return input;
     }
 
-    public void Parsejson1(String input1) {
+    public static void Parsejson1(String input1) {
         //Log.d("test","AAA" +input1);
 
         try {
@@ -207,7 +171,7 @@ public class ListScreen extends AppCompatActivity {
         }
     }
 
-    public String GetJson(String input) {
+    public static String GetJson(String input) {
         String json = "";
         try {
             XmlPullParserFactory fc = XmlPullParserFactory.newInstance();
@@ -250,7 +214,7 @@ public class ListScreen extends AppCompatActivity {
         return json;
     }
 
-    public String downloadUrl(String strUrl) throws IOException {
+    public static String downloadUrl(String strUrl) throws IOException {
         String data = "";
         InputStream iStream = null;
         HttpURLConnection urlConnection = null;
@@ -296,8 +260,54 @@ public class ListScreen extends AppCompatActivity {
         return data;
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
+    private class LoadDialog extends AsyncTask<Void, Void, String>{
+
+        ProgressDialog Dialog;
+        int position;
+
+        @Override
+        protected void onPreExecute() {
+            if (idIndustry == "") {
+                apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"location\":\"" + idLocation + "\"}";
+            } else {
+                apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"industry\":\"" + idIndustry + "\",\"location\":\"" + idLocation + "\"}";
+            }
+            //Hiển thị Dialog loading...
+            Dialog = new ProgressDialog(ListScreen.this);
+            Dialog.setTitle("Please Wait");
+            Dialog.setMessage("Loading...");
+            Dialog.setCancelable(false);
+            Dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String input = "";
+            try {
+                input = downloadUrl(apisearch);
+                Log.e("test", "da o day");
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                //Log.e("test", "Loi o day");
+                e.printStackTrace();
+            }
+            String data = GetJson(input);
+            Parsejson(data);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String avoid) {
+
+            //Toast.makeText(ListScreen.this, "Load Xong", Toast.LENGTH_SHORT).show();
+            adapter = new ListAdapter(
+                    getApplicationContext(),
+                    R.layout.item_listview,
+                    mangLV
+            );
+            lv.setAdapter(adapter);
+            Dialog.cancel();
+
+        }
     }
 }
