@@ -94,11 +94,7 @@ public class ListScreen extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ListScreen.this, DetailScreen.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("key", mangLV.get(position).job_id);
-                intent.putExtra("Mypack", bundle);
-                startActivity(intent);
+                new LoadDialogDetailScreen().execute();
             }
         });
     }
@@ -285,7 +281,7 @@ public class ListScreen extends AppCompatActivity {
             String input = "";
             try {
                 input = downloadUrl(apisearch);
-                Log.e("test", "da o day");
+                //Log.e("test", "da o day");
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 //Log.e("test", "Loi o day");
@@ -306,6 +302,45 @@ public class ListScreen extends AppCompatActivity {
                     mangLV
             );
             lv.setAdapter(adapter);
+            Dialog.cancel();
+
+        }
+    }
+
+    private class LoadDialogDetailScreen extends AsyncTask<Void, Void, String>{
+
+        ProgressDialog Dialog;
+        int position;
+
+        @Override
+        protected void onPreExecute() {
+            //Hiển thị Dialog loading...
+            Dialog = new ProgressDialog(ListScreen.this);
+            Dialog.setTitle("Please Wait");
+            Dialog.setMessage("Loading...");
+            Dialog.setCancelable(false);
+            Dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String avoid) {
+
+            //Toast.makeText(ListScreen.this, "Load Xong", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ListScreen.this, DetailScreen.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("key", mangLV.get(position).job_id);
+            intent.putExtra("Mypack", bundle);
+            startActivity(intent);
             Dialog.cancel();
 
         }
