@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.deleting.timkiemvieclam.model.Industry;
 import com.example.deleting.timkiemvieclam.model.Job;
 import com.example.deleting.timkiemvieclam.model.Location;
+import com.example.deleting.timkiemvieclam.model.keyword;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +22,15 @@ import java.util.List;
  */
 
 public class MyDatabaseAccess extends SQLiteOpenHelper {
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 3;
     private static String DB_NAME = "myjob.db";
     private static SQLiteDatabase db = null;
     //Table
     private static final String table_Location = "Locations";
     private static final String table_Industry = "Industrys";
     private static final String table_Job = "Job";
-    private static final String table_BookMark = "BookMark";
+    private static final String table_Keyword = "Keywords";
+    private static final String table_Job_Tmp = "JobRequiment";
     //colum
 
     private static final String col_location_id = "location_id";
@@ -56,10 +58,18 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
     private static final String col_job_url = "job_url";
     private static final String col_date_view = "date_view";
     private static final String col_share_img = "share_img";
+
+
+    // colum keyword
+    private static final String col_keyword_id = "keyword_id";
+    private static final String col_keyword_name = "keyword_name";
+    private static final String col_keyword_type = "keyword_type";
+
     private static final String col_salary_unit = "salary_unit";
     private static final String col_job_contact_name = "job_contact_name";
     private static final String col_job_addsalary = "job_addsalary";
     private static final String col_job_contact_phone = "job_contact_phone";
+
     Context context;
 
     public MyDatabaseAccess(Context context) {
@@ -79,16 +89,22 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
             + col_share_img + " char(100), " + col_salary_unit + " char(50), " + col_job_contact_name + " nvarchar(100), "
             + col_job_addsalary + " nvarchar(150), " + col_job_contact_phone + " char(50))";
 
+    private static final String Create_table_Keyword = "create table " + table_Keyword + " ( " + col_keyword_id + " INTEGER PRIMARY KEY  ," + col_keyword_name + " nvarchar(50), " + col_keyword_type + " INTEGER )";
+
+    private static final String Create_table_Jobtmp = " create table " + table_Job_Tmp + " ( " + col_job_id + " INTEGER PRIMARY KEY  ," + col_job_requireskill + " ntext )";
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d("test", Create_table_Locations);
         Log.d("test", Create_table_Industry);
         Log.d("test", Create_table_Job);
+        Log.d("test", Create_table_Keyword);
+        Log.d("test", Create_table_Jobtmp);
         db.execSQL(Create_table_Locations);
         db.execSQL(Create_table_Industry);
         db.execSQL(Create_table_Job);
-        //db.execSQL(Create_table_BookMark);
+        db.execSQL(Create_table_Keyword);
+        db.execSQL(Create_table_Jobtmp);
     }
 
     @Override
@@ -96,6 +112,8 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + table_Location);
         db.execSQL("DROP TABLE IF EXISTS " + table_Industry);
         db.execSQL("DROP TABLE IF EXISTS " + table_Job);
+        db.execSQL("DROP TABLE IF EXISTS " + table_Keyword);
+        db.execSQL("DROP TABLE IF EXISTS " + table_Job_Tmp);
         //db.execSQL("DROP TABLE IF EXISTS " + table_BookMark);
         onCreate(db);
     }
@@ -198,17 +216,11 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
     }
 
     public int getJobsCount() {
-        //Log.i(TAG, "MyDatabaseHelper.getNotesCount ... " );
-
         String countQuery = "SELECT  * FROM " + table_Job;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
-
         int count = cursor.getCount();
-
         cursor.close();
-
-        // return count
         return count;
     }
 
@@ -248,8 +260,7 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
             db.setTransactionSuccessful();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             db.endTransaction();
             db.close();
         }
@@ -272,30 +283,13 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
             db.setTransactionSuccessful();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             db.endTransaction();
             db.close();
         }
         return listName;
     }
 
-    /*
-    public List<Location> getallLocation() {
-        SQLiteDatabase database = this.getWritableDatabase();
-        List<Location> locations = new ArrayList<>();
-        String sql = "select * from " + table_Location;
-        Cursor cursor = database.rawQuery(sql, null);
-        if (cursor.moveToFirst()) {
-            do {
-                Location location = new Location();
-                location.setLocation_id(cursor.getInt(0));
-                location.setLocation_name(cursor.getString(1));
-                locations.add(location);
-            } while (cursor.moveToNext());
-        }
-        return locations;
-    }*/
 
     public int getLocationCount() {
         String sql = "select * from " + table_Location;
@@ -310,8 +304,8 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(col_Industry_id, industry.getIndustry_id());
         values.put(col_Industry_name, industry.getIndustry_name());
-        Log.d("test","industry id: " + industry.getIndustry_id());
-        Log.d("test","industry name: " + industry.getIndustry_name());
+        Log.d("test", "industry id: " + industry.getIndustry_id());
+        Log.d("test", "industry name: " + industry.getIndustry_name());
         SQLiteDatabase database = this.getWritableDatabase();
         long rowId = database.insertWithOnConflict(table_Industry, null, values, SQLiteDatabase.CONFLICT_REPLACE);
         database.close();
@@ -336,8 +330,7 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
             db.setTransactionSuccessful();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             db.endTransaction();
             db.close();
         }
@@ -360,35 +353,159 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
             db.setTransactionSuccessful();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             db.endTransaction();
             db.close();
         }
         return listName;
     }
 
- /*   public List<Industry> getallIndustry() {
-        SQLiteDatabase database = this.getWritableDatabase();
-        List<Industry> industrys = new ArrayList<>();
-        String sql = "select * from " + table_Industry;
-        Cursor cursor = database.rawQuery(sql, null);
-        if (cursor.moveToFirst()) {
-            do {
-                Industry industry = new Industry();
-                industry.setIndustry_id(cursor.getInt(0));
-                industry.setIndustry_name(cursor.getString(1));
-                industrys.add(industry);
-            } while (cursor.moveToNext());
+    public int getidIndustry(String industry_name) {
+        int id = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT " + col_Industry_id + " FROM " + table_Industry + " where " + col_Industry_name + " = '" + industry_name + "'";
+            Log.d("test", selectQuery);
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    id = cursor.getInt(cursor.getColumnIndex(col_Industry_id));
+                    Log.d("test", "hung" + id);
+                }
+            }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            db.close();
         }
-        return industrys;
-    }*/
+        return id;
+    }
 
     public int getCountIndustry() {
         String sql = "select * from " + table_Industry;
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(sql, null);
         return cursor.getCount();
+    }
+
+
+    // ------------------------ " Keyword " table methods ----------------//
+    public boolean addKeyword(keyword keyword) {
+        ContentValues values = new ContentValues();
+        values.put(col_keyword_id, keyword.getId());
+        values.put(col_keyword_name, keyword.getStrkey());
+        values.put(col_keyword_type, keyword.getType());
+        SQLiteDatabase database = this.getWritableDatabase();
+        Log.d("test", keyword.getStrkey());
+        long rowId = database.insertWithOnConflict(table_Keyword, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        database.close();
+        if (rowId != -1)
+            return true;
+        return false;
+    }
+
+    public ArrayList<keyword> GetKeyword(int type) {
+
+        ArrayList<keyword> arr = new ArrayList<keyword>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT * FROM " + table_Keyword + " where " + col_keyword_type + " ='" + type + "'";
+            Log.d("test", selectQuery);
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    keyword tmp = new keyword();
+                    int id = cursor.getInt(cursor.getColumnIndex(col_keyword_id));
+                    String key = cursor.getString(cursor.getColumnIndex(col_keyword_name));
+                    Log.d("test", "id = " + id + " -  key: " + key + " - type: " + type);
+                    tmp.setId(id);
+                    tmp.setStrkey(key);
+                    arr.add(tmp);
+                }
+            }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+
+        return arr;
+    }
+
+    public int getCountKeyword() {
+        String sql = "select * from " + table_Keyword;
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(sql, null);
+        return cursor.getCount();
+    }
+
+    // ------------------------ " Job tmp" table methods ----------------//
+
+    public boolean addJobtmp(Job job) {
+        long rowId = -1;
+        ContentValues values = new ContentValues();
+        values.put(col_job_id, job.getJob_id());
+        Log.d("test", "them rq: " + job.getJob_id());
+        values.put(col_job_requireskill, job.getJob_requireskill());
+        SQLiteDatabase database = this.getWritableDatabase();
+        rowId = database.insertWithOnConflict(table_Job_Tmp, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+        database.close();
+        if (rowId != -1)
+            return true;
+        return false;
+    }
+
+    public ArrayList<Job> getListJobtmp() {
+        ArrayList<Job> arr = new ArrayList<Job>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT * FROM " + table_Job_Tmp;
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    Job tmp = new Job();
+                    int id = cursor.getInt(cursor.getColumnIndex(col_job_id));
+                    String requireskill = cursor.getString(cursor.getColumnIndex(col_job_requireskill));
+
+
+                    Log.d("test", "id = " + id + " -  requireskill: " + requireskill);
+                    tmp.setJob_id(id);
+                    tmp.setJob_requireskill(requireskill);
+                    arr.add(tmp);
+                }
+            }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+
+        return arr;
+    }
+
+    public int getCountJobtmp() {
+        String sql = "select * from " + table_Job_Tmp;
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(sql, null);
+        return cursor.getCount();
+    }
+
+    public void DeleteJobtmp() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String Query = "Delete  FROM " + table_Job_Tmp;
+        db.execSQL(Query);
+        db.close();
+
     }
 
     boolean isDatabaseExist() {

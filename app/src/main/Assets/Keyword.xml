@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!--//thu vien - > truyen hinh-->
+    <keyword id="200">
+        <keyword_name>Bằng cấp</keyword_name>
+        <keyword_type>57</keyword_type>
+    </keyword>
+    <keyword id="201">
+        <keyword_name>Độ tuổi</keyword_name>
+        <keyword_type>57</keyword_type>
+    </keyword>
+    <keyword id="202">
+        <keyword_name>Hình thức</keyword_name>
+        <keyword_type>57</keyword_type>
+    </keyword>
+    <keyword id="203">
+        <keyword_name>Phúc lợi</keyword_name>
+        <keyword_type>57</keyword_type>
+    </keyword>
+    <keyword id="204">
+        <keyword_name>Đồng nghiệp</keyword_name>
+        <keyword_type>57</keyword_type>
+    </keyword>
+    <keyword id="205">
+        <keyword_name>Phụ cấp</keyword_name>
+        <keyword_type>57</keyword_type>
+    </keyword>
+    <keyword id="206">
+        <keyword_name>Trình độ tiếng Anh</keyword_name>
+        <keyword_type>57</keyword_type>
+    </keyword>
+    <keyword id="207">
+        <keyword_name>Trình độ tin học</keyword_name>
+        <keyword_type>57</keyword_type>
+    </keyword>
+    <keyword id="208">
+        <keyword_name>quản lý dự án</keyword_name>
+        <keyword_type>57</keyword_type>
+    </keyword>
+    <keyword id="209">
+        <keyword_name>kinh nghiệm</keyword_name>
+        <keyword_type>57</keyword_type>
+    </keyword>
+    <keyword id="210">
+        <keyword_name>Ngoại hình</keyword_name>
+        <keyword_type>57</keyword_type>
+    </keyword>
+
+    <!--//Thực phâm, đồ uống-->
+    <keyword id="211">
+        <keyword_name>Kinh nghiệm</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="212">
+        <keyword_name>Phúc lợi</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="213">
+        <keyword_name>Độ tuổi</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="214">
+        <keyword_name>Hình thức</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="215">
+        <keyword_name>Ngoại hình</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="216">
+        <keyword_name>làm việc nhóm</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="217">
+        <keyword_name>lập kế hoạch</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="218">
+        <keyword_name>thực thi kế hoạch</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="219">
+        <keyword_name>Bằng cấp</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="220">
+        <keyword_name>Bằng cấp</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="221">
+        <keyword_name>Giới tính</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="222">
+        <keyword_name>Thời gian làm việc</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="223">
+        <keyword_name>kinh nghiệm</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="224">
+        <keyword_name>Giao tiếp</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="225">
+        <keyword_name>áp lực</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="226">
+        <keyword_name>Trình độ</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="227">
+        <keyword_name>Sức khỏe tốt</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="228">
+        <keyword_name>Khả năng làm việc</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="229">
+        <keyword_name>quản lý</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="230">
+        <keyword_name>Chuyên môn</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="231">
+        <keyword_name>Kỹ năng</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="232">
+        <keyword_name>Ưu tiên</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="233">
+        <keyword_name>Hiểu biết</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="234">
+        <keyword_name>Thời gian thử việc</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="235">
+        <keyword_name>Thời gian làm việc</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="236">
+        <keyword_name>Ngày nghỉ</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="237">
+        <keyword_name>đam mê</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="238">
+        <keyword_name>Chăm chỉ</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="239">
+        <keyword_name>vi tính</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="240">
+        <keyword_name>Hiểu biết</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="241">
+        <keyword_name>Phụ cấp</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="242">
+        <keyword_name>Trung thực</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="243">
+        <keyword_name>tinh thần trách nhiệm</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+    <keyword id="244">
+        <keyword_name>Cẩn thận, tỉ mỉ</keyword_name>
+        <keyword_type>21</keyword_type>
+    </keyword>
+
+    <!--//Tiếp thị maketing-->
+
+    <keyword id="245">
+        <keyword_name>Bằng cấp</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="246">
+        <keyword_name>Độ tuổi</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="247">
+        <keyword_name>Giới tính</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="248">
+        <keyword_name>Hình thức</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="249">
+        <keyword_name>Kinh nghiệm</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="250">
+        <keyword_name>tin học văn phòng</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="251">
+        <keyword_name>kỹ năng thuyết trình</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="252">
+        <keyword_name>đàm phán</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="253">
+        <keyword_name>Phúc lợi</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="254">
+        <keyword_name>Cẩn thận, chi tiết</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="255">
+        <keyword_name>Tốt nghiệp</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="256">
+        <keyword_name>Phụ cấp</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="257">
+        <keyword_name>Giao tiếp</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="258">
+        <keyword_name>Đồng nghiệp</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="259">
+        <keyword_name>Trình độ</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="260">
+        <keyword_name>thành thạo các phần mềm</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="261">
+        <keyword_name>Tính cách</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="262">
+        <keyword_name>tinh thần</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="263">
+        <keyword_name>Ngày nghỉ</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="264">
+        <keyword_name>tinh thần</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="265">
+        <keyword_name>lập kế hoạch</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="266">
+        <keyword_name>triển khai kế hoạch</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+    <keyword id="267">
+        <keyword_name>Am hiểu</keyword_name>
+        <keyword_type>4</keyword_type>
+    </keyword>
+
+    <!--//tiếp thị trực tuyến-->
+    <keyword id="268">
+        <keyword_name>Độ tuổi</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="269">
+        <keyword_name>Hình thức</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="270">
+        <keyword_name>Tốt nghiệp</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="271">
+        <keyword_name>Sử dụng máy tính</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="272">
+        <keyword_name>Bằng cấp</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="273">
+        <keyword_name>Nam</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="274">
+        <keyword_name>Nữ</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="275">
+        <keyword_name>kinh nghiệm</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="276">
+        <keyword_name>hạo các công cụ quảng cáo</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="277">
+        <keyword_name>Ngoại hình</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="278">
+        <keyword_name>Tiếng anh</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="279">
+        <keyword_name>Khả năng giao tiếp</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="280">
+        <keyword_name>Ngày nghỉ</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="281">
+        <keyword_name>Đồng nghiệp</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="282">
+        <keyword_name>kiến thức</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="283">
+        <keyword_name>lập và quản lý kế hoạch</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="284">
+        <keyword_name>sáng tạo</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="285">
+        <keyword_name>áp lực</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="286">
+        <keyword_name>Trình độ chuyên môn</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="287">
+        <keyword_name>Tư duy</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="288">
+        <keyword_name>Số lượng</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="289">
+        <keyword_name>khả năng xử lý</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    <keyword id="290">
+        <keyword_name>giải quyết vấn đề</keyword_name>
+        <keyword_type>37</keyword_type>
+    </keyword>
+    // tổ chức sự kiện
+
+    <keyword id="291">
+        <keyword_name>Tiếng Anh</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="292">
+        <keyword_name>Chủ động</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="293">
+        <keyword_name>kiến thức về xã hội</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="294">
+        <keyword_name>áp lực</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="295">
+        <keyword_name>hành thạo các phần mềm văn phòng</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="296">
+        <keyword_name>Nam</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="297">
+        <keyword_name>Nữ</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="298">
+        <keyword_name>Tốt nghiệp</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="299">
+        <keyword_name>Kinh nghiệm</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="300">
+        <keyword_name>Hình thức</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="301">
+        <keyword_name>Cơ hội</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="302">
+        <keyword_name>Phúc lợi</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="303">
+        <keyword_name>Bằng cấp</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="304">
+        <keyword_name>Độ tuổi</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="305">
+        <keyword_name>kỹ năng</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="306">
+        <keyword_name>tư duy</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="307">
+        <keyword_name>Chủ động</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="308">
+        <keyword_name>giải quyết sự cố</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="309">
+        <keyword_name>sáng tạo</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="310">
+        <keyword_name>khả năng</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="311">
+        <keyword_name>tiếng Nhật</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="312">
+        <keyword_name>giao tiếp</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="313">
+        <keyword_name>thuyết trình</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="314">
+        <keyword_name>sức thuyết phục</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="315">
+        <keyword_name>tổ chức</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="316">
+        <keyword_name>biên tập</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    <keyword id="317">
+        <keyword_name>Am hiểu</keyword_name>
+        <keyword_type>68</keyword_type>
+    </keyword>
+    //trắc địa địa chất
+    <keyword id="318">
+        <keyword_name>áp lực</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="319">
+        <keyword_name>truyền đạt</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="320">
+        <keyword_name>giao tiếp</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="321">
+        <keyword_name>Khả năng lãnh đạo</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="322">
+        <keyword_name>chuyên môn</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="323">
+        <keyword_name>kinh nghiệm</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="324">
+        <keyword_name>Sử dụng thành thạo các máy móc</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="325">
+        <keyword_name>thiết bị</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="326">
+        <keyword_name>Bằng cấp</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="327">
+        <keyword_name>Độ tuổi</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="328">
+        <keyword_name>Giới tính</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="329">
+        <keyword_name>Hình thức</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="330">
+        <keyword_name>tiếng anh</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="331">
+        <keyword_name>Thành thạo tin học văn phòng</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="332">
+        <keyword_name>Lập kế hoạch</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="333">
+        <keyword_name>Độ tuổi</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="334">
+        <keyword_name>Tốt nghiệp</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="335">
+        <keyword_name>có chứng chỉ</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="336">
+        <keyword_name>sức khỏe</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="337">
+        <keyword_name>Trình độ</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="338">
+        <keyword_name>phần mềm chuyên ngành</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    <keyword id="339">
+        <keyword_name>quy định</keyword_name>
+        <keyword_type>54</keyword_type>
+    </keyword>
+    //truyen hinh
+    <keyword id="340">
+        <keyword_name>Thời gian thử việc</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="341">
+        <keyword_name>Thời gian làm việc</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="342">
+        <keyword_name>Kinh nghiệm</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="343">
+        <keyword_name>Phúc lợi</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="344">
+        <keyword_name>Ngày nghỉ</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="345">
+        <keyword_name>Tốt nghiệp</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="346">
+        <keyword_name>Anh ngữ</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="347">
+        <keyword_name>Kỹ năng</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="348">
+        <keyword_name>áp lực</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="349">
+        <keyword_name>Bằng cấp</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="350">
+        <keyword_name>Độ tuổi</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="351">
+        <keyword_name>Giới tính</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="352">
+        <keyword_name>Hình thức</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="353">
+        <keyword_name>giao tiếp</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="354">
+        <keyword_name>Giọng nói</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="355">
+        <keyword_name>Tác phong</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="356">
+        <keyword_name>quản lý</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="357">
+        <keyword_name>Khả năng</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="358">
+        <keyword_name>am hiểu</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="359">
+        <keyword_name>tin học văn phòng</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="360">
+        <keyword_name>Nữ</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="361">
+        <keyword_name>Phụ cấp</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="362">
+        <keyword_name>năng khiếu</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+    <keyword id="363">
+        <keyword_name>Giao tiếp</keyword_name>
+        <keyword_type>66</keyword_type>
+    </keyword>
+
+
+</resources>
