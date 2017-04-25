@@ -21,6 +21,7 @@ import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
 import com.example.deleting.timkiemvieclam.DetailScreen;
 import com.example.deleting.timkiemvieclam.ListScreen;
 import com.example.deleting.timkiemvieclam.R;
+import com.example.deleting.timkiemvieclam.Util.ConnectivityReceiver;
 import com.example.deleting.timkiemvieclam.model.Job;
 
 import java.net.URI;
@@ -53,6 +54,9 @@ public class Fragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.seachbyjobname_layout, container, false);
+        ConnectivityReceiver sconn = new ConnectivityReceiver();
+        final boolean checkconn = sconn.isConnected(getActivity());
+
         spinIndustry = (Spinner) rootView.findViewById(R.id.spinIndustry);
         spinLocation = (Spinner) rootView.findViewById(R.id.spinLocation);
         btnFind = (Button) rootView.findViewById(R.id.btnFind);
@@ -79,8 +83,11 @@ public class Fragment1 extends Fragment {
         btnFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Check();
-
+                if (checkconn == true) {
+                    Check();
+                }else{
+                    Toast.makeText(getActivity(), "không có kết nối mạng", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -97,6 +104,12 @@ public class Fragment1 extends Fragment {
     public void Check() {
         String edtjobname = edtJobName.getText().toString();
         edtjobname.trim();
+        try {
+            uri = new URI(edtjobname.replaceAll(" ", "%20"));
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         try {
             uri = new URI(edtjobname.replaceAll(" ", "%20"));

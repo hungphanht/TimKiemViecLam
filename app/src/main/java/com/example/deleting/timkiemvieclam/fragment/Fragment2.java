@@ -13,11 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
 import com.example.deleting.timkiemvieclam.DetailScreen;
 import com.example.deleting.timkiemvieclam.ListScreen;
 import com.example.deleting.timkiemvieclam.R;
+import com.example.deleting.timkiemvieclam.Util.ConnectivityReceiver;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -42,12 +44,16 @@ public class Fragment2 extends Fragment {
     Bundle bundle;
 
     URI uri = null;
+
     public Fragment2() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.searchbycompaname_layout, container, false);
+        ConnectivityReceiver sconn = new ConnectivityReceiver();
+        final boolean checkconn = sconn.isConnected(getActivity());
+
         spinLocation = (Spinner) rootView.findViewById(R.id.spinLocation);
         edtJobName = (EditText) rootView.findViewById(R.id.edtJobName);
         btnExit = (Button) rootView.findViewById(R.id.btnExit);
@@ -71,7 +77,11 @@ public class Fragment2 extends Fragment {
         btnFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Check();
+                if (checkconn == true) {
+                    Check();
+                } else {
+                    Toast.makeText(getActivity(), "không có kết nối mạng", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -99,11 +109,10 @@ public class Fragment2 extends Fragment {
         matcher = pattern.matcher(edtjobname);
 
         if (matcher.matches() == false) {
-            edtJobName.setError("Có Kí tự đặc biệt. Mời bạn nhập lại!");
+            edtJobName.setError("Có ký tự đặc biệt. Mời bạn nhập lại");
             edtJobName.requestFocus();
         } else {
             intent = new Intent(getActivity(), ListScreen.class);
-
             //Khai báo Bundle
             bundle = new Bundle();
             bundle.putString("key", String.valueOf(uri));
