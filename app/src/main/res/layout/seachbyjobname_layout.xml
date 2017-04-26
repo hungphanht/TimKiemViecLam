@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#67c2ed"
+    android:background="#EEEEEE"
     android:orientation="vertical"
     android:padding="15dp">
 
@@ -11,14 +11,16 @@
         android:layout_height="0dp"
         android:layout_weight="3"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="-100dp"
-            android:layout_marginTop="-75dp"
-            android:src="@drawable/logo1" />
+            android:layout_marginBottom="-20dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/ic_logonew" />
 
         <EditText
             android:id="@+id/edtJobName"

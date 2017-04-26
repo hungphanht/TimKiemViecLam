@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#67c2ed"
+    android:background="#EEEEEE"
     android:orientation="vertical"
     android:padding="15dp">
 
@@ -10,9 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="-100dp"
-        android:layout_marginTop="-75dp"
-        android:src="@drawable/logo1" />
+        android:layout_marginBottom="-20dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/ic_logonew" />
 
     <LinearLayout
         android:layout_width="match_parent"

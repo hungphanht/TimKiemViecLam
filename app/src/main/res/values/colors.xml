@@ -3,10 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="txtbackroud">#EEEEEE</color>
     <color name="txt1">#808080</color>
     <color name="txt2">#0000FF</color>
     <color name="txt3">#FF0000</color>
-    <color name="txt4">#008000</color>
+    <color name="txt4">#00FF00</color>
     <color name="txt5">#00FFFF</color>
     <color name="txt6">#FFFF00</color>
 

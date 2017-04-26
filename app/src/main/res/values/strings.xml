@@ -1,11 +1,12 @@
 <resources>
-    <string name="app_name">Seach Job</string>
+    <string name="app_name">Tìm Kiếm Việc Làm</string>
     <string name="drawer_opened">Opened</string>
     <string name="drawer_closed">Closed</string>
     <string name="titlesearch">Search Job By Team 4</string>
     <string name="name_job">Name Job: </string>
+    <string name="hint_job">Nhập tên công việc muốn tìm</string>
     <string name="soluong_title">Số lượng: </string>
-    <string name="soluong">Số lượng công ty bạn muốn xử lý</string>
+    <string name="hint_soluong">Số lượng công ty bạn muốn xử lý</string>
     <string name="btn_Searchrq">Search Requiments</string>
 
     <string-array name="cntt">

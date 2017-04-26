@@ -2,25 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
+    android:layout_margin="10dp"
+    android:background="@color/txtbackroud"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
+
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:text="@string/name_job" />
+                android:text="@string/name_job"
+                android:textColor="@color/txt3" />
 
             <AutoCompleteTextView
                 android:id="@+id/txtnamejob"
@@ -28,32 +29,31 @@
                 android:layout_height="wrap_content"
                 android:completionThreshold="2"
                 android:ems="10"
-                android:hint="@string/name_job" />
+                android:hint="@string/hint_job" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:text="@string/soluong_title" />
+                android:text="@string/soluong_title"
+                android:textColor="@color/txt3" />
 
             <EditText
                 android:id="@+id/txtsoluong"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/soluong"
+                android:hint="@string/hint_soluong"
                 android:inputType="numberDecimal" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
             <Button
@@ -68,15 +68,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Chọn Ngành nghề có sẵn" />
+            android:text="Chọn Ngành nghề có sẵn"
+            android:textColor="@color/txt3" />
 
         <ListView
             android:id="@+id/lvindustry"
