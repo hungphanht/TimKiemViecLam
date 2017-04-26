@@ -1,8 +1,15 @@
 package com.example.deleting.timkiemvieclam.adapter;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
+=======
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,14 +22,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
 import com.example.deleting.timkiemvieclam.R;
-import com.example.deleting.timkiemvieclam.fragment.Fragment3;
 import com.example.deleting.timkiemvieclam.model.Job;
 import com.squareup.picasso.Picasso;
 
@@ -85,9 +89,9 @@ public class BookMarkAdapter extends BaseAdapter{
         } else {
             if (p.salary_unit == null)
             {
-                txt4.setText(String.valueOf(p.job_fromsalary) + " - " + String.valueOf(p.job_fromsalary) + " vnd");
+                txt4.setText(String.valueOf(p.job_fromsalary) + " - " + String.valueOf(p.job_tosalary) + " vnd");
             } else {
-                txt4.setText(String.valueOf(p.job_fromsalary) + " - " + String.valueOf(p.job_fromsalary) + " " + p.salary_unit);
+                txt4.setText(String.valueOf(p.job_fromsalary) + " - " + String.valueOf(p.job_tosalary) + " " + p.salary_unit);
             }
         }
         txt5.setText(p.date_view);
