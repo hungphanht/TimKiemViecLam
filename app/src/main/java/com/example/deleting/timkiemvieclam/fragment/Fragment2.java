@@ -12,11 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
-import com.example.deleting.timkiemvieclam.DetailScreen;
 import com.example.deleting.timkiemvieclam.ListScreen;
 import com.example.deleting.timkiemvieclam.R;
 import com.example.deleting.timkiemvieclam.Util.ConnectivityReceiver;
@@ -53,7 +51,7 @@ public class Fragment2 extends Fragment {
         View rootView = inflater.inflate(R.layout.searchbycompaname_layout, container, false);
         ConnectivityReceiver sconn = new ConnectivityReceiver();
         final boolean checkconn = sconn.isConnected(getActivity());
-
+        getActivity().setTitle("Tìm kiếm theo tên công ty");
         spinLocation = (Spinner) rootView.findViewById(R.id.spinLocation);
         edtJobName = (EditText) rootView.findViewById(R.id.edtJobName);
         btnExit = (Button) rootView.findViewById(R.id.btnExit);

@@ -1,6 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
+    <!-- Bảo vê -->
+    <keyword id="2"><keyword_name>Nam</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="3"><keyword_name>cao từ 1.60m</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="4"><keyword_name>sức khỏe Tốt</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="5"><keyword_name>Trung thực</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="6"><keyword_name>tận tụy</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="7"><keyword_name>dũng cảm</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="8"><keyword_name>linh hoạt</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="9"><keyword_name>giữ bí mật</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="10"><keyword_name>Kỹ năng giao tiếp</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="11"><keyword_name>Đạo đức tốt</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="12"><keyword_name>ưu tiên bộ đội xuất ngũ</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="13"><keyword_name>Bằng cấp</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="14"><keyword_name>nhiệt  tình</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="15"><keyword_name>thân thiện</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="16"><keyword_name>có kỹ năng làm việc nhóm</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="17"><keyword_name>kinh nghiệm</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="18"><keyword_name>Chịu được áp lực công việc</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="19"><keyword_name>tin học văn phòng</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="20"><keyword_name>Tốt nghiệp Phổ thông trung học</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="21"><keyword_name>nặng từ 50kg trở lên</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="22"><keyword_name>tuổi từ 27 - 45</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="23"><keyword_name>Cẩn thận</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="24"><keyword_name>biết võ thuật</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="25"><keyword_name>Tiếng Anh</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="26"><keyword_name>Có tinh thần trách nhiệm</keyword_name><keyword_type>51</keyword_type></keyword>
+    <keyword id="27"><keyword_name>có kỹ năng quản lý</keyword_name><keyword_type>51</keyword_type></keyword>
+    <!-- An toàn lao động  -->
+    <keyword id="28"><keyword_name>chuyên ngành An toàn lao động</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="29"><keyword_name>kinh nghiệm</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="30"><keyword_name>Kiến thức tiêu chuẩn quy định</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="31"><keyword_name>kiến thức các thiết bị bảo hộ lao động</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="32"><keyword_name>Tốt nghiệp Đại học</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="33"><keyword_name>tiếng Anh</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="34"><keyword_name>thành thạo tin học Văn Phòng</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="35"><keyword_name>Kỹ năng giao tiếp</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="36"><keyword_name>kỹ năng trình bày vấn đề</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="37"><keyword_name>Có kỹ năng lên kế hoạch công việc</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="38"><keyword_name>chịu được áp lực cao</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="39"><keyword_name>Thật thà</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="40"><keyword_name>chịu khó</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="41"><keyword_name>hòa đồng</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="42"><keyword_name>có tinh thần trách nhiệm</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="43"><keyword_name>sẵn sàng đi công tác xa</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="44"><keyword_name>Đam mê công việc</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="45"><keyword_name>Nam</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="46"><keyword_name>Có khả năng làm việc độc lập</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="47"><keyword_name>Khả năng truyền đạt</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="48"><keyword_name>tư cách đạo đức tốt</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="49"><keyword_name>làm việc theo nhóm</keyword_name><keyword_type>58</keyword_type></keyword>
+    <keyword id="51"><keyword_name>kĩ năng làm việc nhóm</keyword_name><keyword_type>58</keyword_type></keyword>
+
+    <!-- Bán hàng / Kinh doanh -->
+    <keyword id="52"><keyword_name>kinh ngiệm</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="53"><keyword_name>Tiếng Anh</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="54"><keyword_name>có trách nhiệm với công việc</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="55"><keyword_name>Năng nổ</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="56"><keyword_name>có khả năng thuyết phục khách hàng</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="57"><keyword_name>Trung thực</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="58"><keyword_name>kiên trì</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="59"><keyword_name>chăm chỉ</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="60"><keyword_name>chịu khó</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="61"><keyword_name>Tốt nghiệp Cao đẳng</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="62"><keyword_name>Tốt nghiệp Đại học</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="63"><keyword_name>thành thạo vi tính văn phòng</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="64"><keyword_name>Kỹ năng giao tiếp</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="65"><keyword_name>Kỹ năng quản lý</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="66"><keyword_name>làm việc dưới áp lực cao</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="67"><keyword_name>chấp nhận đi công tác tỉnh thường xuyên</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="68"><keyword_name>Tốt nghiệp từ Trung cấp trở lên</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="69"><keyword_name>Đam mê hoạt động kinh doanh</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="70"><keyword_name>Kỹ năng tư vấn và thuyết phục Khách hàng</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="71"><keyword_name>Sức khỏe tốt</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="72"><keyword_name>Có khả năng phân tích thị trường</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="73"><keyword_name>tư duy nhạy bén</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="74"><keyword_name>tiếng Hoa</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="75"><keyword_name>Yêu thích công việc kinh doanh</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="76"><keyword_name>Kỹ năng bán hàng</keyword_name><keyword_type>31</keyword_type></keyword>
+    <keyword id="77"><keyword_name>tinh thần trách nhiệm cao</keyword_name><keyword_type>31</keyword_type></keyword>
+
+    <!-- Bán hàng / Kinh doanh -->
+
     <!--//thu vien - > truyen hinh-->
     <keyword id="200">
         <keyword_name>Bằng cấp</keyword_name>

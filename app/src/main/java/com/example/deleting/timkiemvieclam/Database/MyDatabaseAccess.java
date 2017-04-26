@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.example.deleting.timkiemvieclam.model.Industry;
 import com.example.deleting.timkiemvieclam.model.Job;
@@ -22,7 +20,7 @@ import java.util.List;
  */
 
 public class MyDatabaseAccess extends SQLiteOpenHelper {
-    private static final int DB_VERSION = 3;
+    private static final int DB_VERSION = 4;
     private static String DB_NAME = "myjob.db";
     private static SQLiteDatabase db = null;
     //Table
@@ -87,7 +85,7 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
             + col_job_contact_email2 + " char(50) , " + col_location + " nvarchar(50) , " + col_emp_desc + " ntext , "
             + col_emp_website + " char(100) , " + col_job_url + " char(100), " + col_date_view + " date, "
             + col_share_img + " char(100), " + col_salary_unit + " char(50), " + col_job_contact_name + " nvarchar(100), "
-            + col_job_addsalary + " nvarchar(150), " + col_job_contact_phone + " char(50))";
+            + col_job_addsalary + " nvarchar(150), " + col_job_contact_phone + " nvarchar(50))";
 
     private static final String Create_table_Keyword = "create table " + table_Keyword + " ( " + col_keyword_id + " INTEGER PRIMARY KEY  ," + col_keyword_name + " nvarchar(50), " + col_keyword_type + " INTEGER )";
 
@@ -148,10 +146,12 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
         values.put(col_job_contact_name, job.getJob_contact_name());
         values.put(col_job_addsalary, job.getJob_addsalary());
         values.put(col_job_contact_phone, job.getJob_contact_phone());
+        Log.d("test","sdt"+job.getJob_contact_phone());
         // Trèn một dòng dữ liệu vào bảng.
 
 
-        long rowId = db.insert(table_Job, null, values);
+        long rowId = db.insertWithOnConflict(table_Job, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+
         db.close();
         if (rowId != -1)
             return true;
@@ -445,6 +445,12 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
 
     public int getCountKeyword() {
         String sql = "select * from " + table_Keyword;
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery(sql, null);
+        return cursor.getCount();
+    }
+    public int getCountKey(int id) {
+        String sql = "select * from " + table_Keyword + " where "+ col_keyword_type + " = '" + id +"'" ;
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(sql, null);
         return cursor.getCount();

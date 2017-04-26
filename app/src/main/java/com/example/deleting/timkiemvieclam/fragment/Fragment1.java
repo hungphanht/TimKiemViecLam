@@ -2,9 +2,7 @@ package com.example.deleting.timkiemvieclam.fragment;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,20 +12,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
-import com.example.deleting.timkiemvieclam.DetailScreen;
 import com.example.deleting.timkiemvieclam.ListScreen;
 import com.example.deleting.timkiemvieclam.R;
 import com.example.deleting.timkiemvieclam.Util.ConnectivityReceiver;
-import com.example.deleting.timkiemvieclam.model.Job;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -56,7 +50,7 @@ public class Fragment1 extends Fragment {
         View rootView = inflater.inflate(R.layout.seachbyjobname_layout, container, false);
         ConnectivityReceiver sconn = new ConnectivityReceiver();
         final boolean checkconn = sconn.isConnected(getActivity());
-
+        getActivity().setTitle("Tìm kiếm theo tên công việc");
         spinIndustry = (Spinner) rootView.findViewById(R.id.spinIndustry);
         spinLocation = (Spinner) rootView.findViewById(R.id.spinLocation);
         btnFind = (Button) rootView.findViewById(R.id.btnFind);

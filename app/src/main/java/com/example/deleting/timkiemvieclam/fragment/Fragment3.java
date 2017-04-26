@@ -1,9 +1,13 @@
 package com.example.deleting.timkiemvieclam.fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,13 +28,9 @@ import com.example.deleting.timkiemvieclam.R;
 import com.example.deleting.timkiemvieclam.adapter.BookMarkAdapter;
 import com.example.deleting.timkiemvieclam.model.Job;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 public class Fragment3 extends Fragment {
@@ -72,10 +72,13 @@ public class Fragment3 extends Fragment {
 
             }
         });
-
         setHasOptionsMenu(true);
+        if (db.getJobsCount() == 0) {
+            DialogData(getActivity(), "Bạn chưa lưu công việc nào! Bật mạng và tìm đi chứ ??");
+        } else {
+            getList();
+        }
 
-        getList();
 
         return rootView;
     }
@@ -162,9 +165,9 @@ public class Fragment3 extends Fragment {
             if (chk.isChecked()) {
                 db.deleteJob(arr.get(i).getJob_id());
                 arr.remove(arr.get(i));
-                Toast.makeText(getActivity(), "Đã Xóa", Toast.LENGTH_SHORT).show();
             }
         }
+        Toast.makeText(getActivity(), "Đã Xóa", Toast.LENGTH_SHORT).show();
         // Sau khi xóa xong thì gọi update giao diện
         adapter.notifyDataSetChanged();
     }
@@ -199,4 +202,22 @@ public class Fragment3 extends Fragment {
         }
     }
 
+    public void DialogData(final Activity activity, String message) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
+        dialog.setTitle("Thông báo");
+        dialog.setMessage(message);
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Fragment1 fragment = new Fragment1();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.main_content, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        dialog.show();
+
+    }
 }

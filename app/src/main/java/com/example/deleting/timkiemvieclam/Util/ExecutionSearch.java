@@ -1,27 +1,27 @@
 package com.example.deleting.timkiemvieclam.Util;
 
 import android.app.Activity;
-import android.content.Context;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
 import com.example.deleting.timkiemvieclam.R;
+import com.example.deleting.timkiemvieclam.fragment.FragmentRq;
 import com.example.deleting.timkiemvieclam.model.Job;
 import com.example.deleting.timkiemvieclam.model.keyword;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,7 +56,8 @@ public class ExecutionSearch {
     String[] xData = new String[6];
     PieChart pieChart;
     TextView txtone,txttwo,txtthr,txtfor,txtfive,txtsix;
-    public void start(Activity activity, String key, int id, int limit) {
+    ProgressDialog Dialog;
+    public void start(final Activity activity, String key, int id, int limit) {
 
 
         String param = getJsonParam(key, limit);
@@ -70,15 +71,25 @@ public class ExecutionSearch {
         txtfive = (TextView) activity.findViewById(R.id.txtfine);
         txtsix = (TextView) activity.findViewById(R.id.txtsix);
         idtype = id;
-        activity.runOnUiThread((new Runnable() {
+        int countkey = myDatabaseAccess.getCountKey(idtype);
+        if(countkey==0){
+            DialogData(activity,"Xin lỗi! chưa có dữ liệu cho công việc này");
 
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                new RequimentJob().execute(urlsearch);
+        }else {
+            activity.runOnUiThread((new Runnable() {
 
-            }
-        }));
+                @Override
+                public void run() {
+                    Dialog = new ProgressDialog(activity);
+                    Dialog.setTitle("Đang tải giữ liệu");
+                    Dialog.setMessage("Loading...");
+                    Dialog.show();
+                    // TODO Auto-generated method stub
+                    new RequimentJob().execute(urlsearch);
+
+                }
+            }));
+        }
     }
 
     public class RequimentJob extends AsyncTask<String, Integer, String> {
@@ -98,11 +109,11 @@ public class ExecutionSearch {
 
 //       protected void onProgressUpdate(Void... values) {
 //            super.onProgressUpdate(values);
-//        }
+//  ma      }
 
         protected void onPostExecute(String res) {
             ProssData(res);
-
+            Dialog.dismiss();
         }
     }
 
@@ -410,7 +421,7 @@ public class ExecutionSearch {
         colors.add(Color.YELLOW);
         pieDataSet.setColors(colors);
 
-       // add legend to chart
+        // add legend to chart
         Legend legend = pieChart.getLegend();
         legend.setForm(Legend.LegendForm.CIRCLE);
         legend.setPosition(Legend.LegendPosition.LEFT_OF_CHART);
@@ -421,5 +432,22 @@ public class ExecutionSearch {
         pieChart.invalidate();
 //        pieChart.setOn
     }
+    public void DialogData(final Activity activity, String message) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
+        dialog.setTitle("Thông báo");
+        dialog.setMessage(message);
+        dialog.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FragmentRq fragmentRq = new FragmentRq();
+                FragmentManager fragmentManager = activity.getFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.main_content, fragmentRq);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        dialog.show();
 
+    }
 }

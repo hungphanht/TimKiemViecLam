@@ -1,11 +1,13 @@
 package com.example.deleting.timkiemvieclam.fragment;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
-
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
 import com.example.deleting.timkiemvieclam.R;
+import com.example.deleting.timkiemvieclam.Util.ConnectivityReceiver;
 
 import java.util.ArrayList;
 
@@ -41,6 +44,9 @@ public class FragmentRq extends Fragment {
     String input;
     ArrayList<String> listNameIndustry;
     ArrayList<String> listIDIndustry;
+    ConnectivityReceiver sconn = new ConnectivityReceiver();
+    int countkey;
+    boolean checkconn;
 
     public FragmentRq() {
     }
@@ -58,13 +64,11 @@ public class FragmentRq extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        // Setup any handles to view objects here
-        // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
-        // super.onCreate(savedInstanceState);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
+        getActivity().setTitle("Tìm kiếm yêu cầu công việc");
+        checkconn = sconn.isConnected(getActivity());
         addControls();
         addEvents();
     }
@@ -82,6 +86,7 @@ public class FragmentRq extends Fragment {
         txtindustry.setAdapter(adapter);
         adapterIndustry = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listNameIndustry);
         lvIndustry.setAdapter(adapterIndustry);
+
     }
 
     public void addEvents() {
@@ -121,13 +126,20 @@ public class FragmentRq extends Fragment {
                     bundle.putString("keyworđ", input);
                     bundle.putInt("id", idIndustry);
                     bundle.putInt("count", count);
-                    FragmentResurtRq resurtRq = new FragmentResurtRq();
-                    resurtRq.setArguments(bundle);
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.replace(R.id.main_content, resurtRq);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+
+                    if (checkconn == true) {
+                        FragmentResurtRq resurtRq = new FragmentResurtRq();
+                        resurtRq.setArguments(bundle);
+                        FragmentManager fragmentManager = getFragmentManager();
+                        FragmentTransaction transaction = fragmentManager.beginTransaction();
+                        transaction.replace(R.id.main_content, resurtRq);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    } else {
+                        DialogData(getActivity(),"Không có kết nối Internet");
+                    }
+
+
                 }
 
             }
@@ -138,19 +150,37 @@ public class FragmentRq extends Fragment {
 
                 String input = listNameIndustry.get(position);
                 int idin = Integer.parseInt(listIDIndustry.get(position));
-                Log.d("test","name: "+ input + "id: " + idin);
+                Log.d("test", "name: " + input + "id: " + idin);
                 Bundle bundle = new Bundle();
                 bundle.putString("keyworđ", input);
                 bundle.putInt("id", idin);
                 bundle.putInt("count", count);
-                FragmentResurtRq resurtRq = new FragmentResurtRq();
-                resurtRq.setArguments(bundle);
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.main_content, resurtRq);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                if (checkconn == true) {
+                    FragmentResurtRq resurtRq = new FragmentResurtRq();
+                    resurtRq.setArguments(bundle);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    transaction.replace(R.id.main_content, resurtRq);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                } else {
+                    DialogData(getActivity(),"Không có kết nối Internet");
+                }
             }
         });
+    }
+    public void DialogData(final Activity activity, String message) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
+        dialog.setTitle("Thông báo");
+        dialog.setMessage(message);
+        dialog.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+               dialog.dismiss();
+            }
+        });
+        dialog.show();
+
     }
 }
