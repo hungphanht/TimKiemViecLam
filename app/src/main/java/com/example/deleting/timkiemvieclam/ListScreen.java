@@ -47,10 +47,10 @@ import java.util.Date;
 
 
 public class ListScreen extends AppCompatActivity {
-    String arrayLocation[] = {"Lương", "Ngày"};
-    String arraySort[] = {"1-20", "20-40", "40-60"};
-    Spinner spnlocation;
-    Spinner spnslnews;
+    String arraySort[] = {"Lương", "Ngày"};
+    String arrayNews[] = {"1-20", "20-40", "40-60"};
+    Spinner spnSort;
+    Spinner spnNews;
     static ListView lv;
     static ArrayList<Job> mangLV;
     static ListAdapter adapter;
@@ -101,31 +101,43 @@ public class ListScreen extends AppCompatActivity {
 
 
 
-        spnlocation = (Spinner) findViewById(R.id.spnlocation);
+        spnSort = (Spinner) findViewById(R.id.spnlocation);
         ArrayAdapter<String> adaptersort = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, arrayLocation
-        );
-        adaptersort.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-        spnlocation.setAdapter(adaptersort);
-
-           /*--------------------------------------*/
-        spnslnews = (Spinner) findViewById(R.id.spnslnews);
-        ArrayAdapter<String> adapternews = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, arraySort
         );
-        adapternews.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
-        spnslnews.setAdapter(adapternews);
-        spnslnews.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        adaptersort.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+        spnSort.setAdapter(adaptersort);
+        spnSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (spnslnews.getSelectedItem().equals("1-20")) {
-                    Toast.makeText(ListScreen.this, "1", Toast.LENGTH_SHORT).show();
+                if (spnSort.getSelectedItem().toString().equals("Lương")) {
+                    arrangeSalary();
+                } else if (spnSort.getSelectedItem().toString().equals("Ngày")) {
+                    arrayDate();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+           /*--------------------------------------*/
+        spnNews = (Spinner) findViewById(R.id.spnslnews);
+        ArrayAdapter<String> adapternews = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, arrayNews
+        );
+        adapternews.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
+        spnNews.setAdapter(adapternews);
+        spnNews.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spnNews.getSelectedItem().equals("1-20")) {
                     for (int i = lv.getCount() - 1; i >= 0; i--) {
                         mangLV.remove(i);
                     }
                     new LoadDialog().execute();
-                } else if (spnslnews.getSelectedItem().equals("20-40")) {
-                    Toast.makeText(ListScreen.this, "2", Toast.LENGTH_SHORT).show();
+                } else if (spnNews.getSelectedItem().equals("20-40")) {
                     for (int i = lv.getCount() - 1; i >= 0; i--) {
                         mangLV.remove(i);
                     }
@@ -135,17 +147,18 @@ public class ListScreen extends AppCompatActivity {
                         apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"industry\":\"" + idIndustry + "\",\"location\":\"" + idLocation + "\",\"start\":\"" + 20 + "\",\"limit\":\"" + 20 + "\"}";
                     }
                     test();
-                } else if (spnslnews.getSelectedItem().equals("40-60")) {
-                    Toast.makeText(ListScreen.this, "3", Toast.LENGTH_SHORT).show();
+                    arrangeSalary();
+                } else if (spnNews.getSelectedItem().equals("40-60")) {
                     for (int i = lv.getCount() - 1; i >= 0; i--) {
                         mangLV.remove(i);
                     }
                     if (idIndustry == "") {
-                        apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"location\":\"" + idLocation + "\",\"start\":\"" + 40 + "\",\"limit\":\"" + 20 + "\"}";
+                        apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"location\":\"" + idLocation + "\",\"start\":\"" + 40 + "\",\"limit\":\"" + 40 + "\"}";
                     } else {
                         apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"industry\":\"" + idIndustry + "\",\"location\":\"" + idLocation + "\",\"start\":\"" + 40 + "\",\"limit\":\"" + 20 + "\"}";
                     }
                     test();
+                    arrangeSalary();
                 }
             }
             @Override
@@ -163,25 +176,9 @@ public class ListScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        spnlocation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (spnlocation.getSelectedItem().toString().equals("Lương")) {
-                    arrangeSalary();
-                    Toast.makeText(ListScreen.this, "Select Salary", Toast.LENGTH_LONG).show();
-                } else if (spnlocation.getSelectedItem().toString().equals("Ngày")) {
-                    arrayDate();
-                    Toast.makeText(ListScreen.this, "Select Datetime", Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
     public void convert() {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String s = DateView;
         Date date;
         try {
@@ -253,10 +250,13 @@ public class ListScreen extends AppCompatActivity {
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
 
+
                 JobTitName = obj.getString("JOB_TITLE").replace("</em>", "").replace("<em>", "");
                 locationName = obj.getString("LOCATION_NAME").replace("<br>", " -");
                 DateView = obj.getString("DATE_VIEW").substring(0, 10);
                 Job_ID = obj.getInt("JOB_ID");
+
+
 
                 apilogo = "http://api.careerbuilder.vn/?method=getJobDetail&token=a5ab26bde79eb7db6198530ddaff3e236&job_id=" + Job_ID;
 
@@ -299,7 +299,11 @@ public class ListScreen extends AppCompatActivity {
         try {
 
             JSONObject obj1 = new JSONObject(input1);
-            logo = obj1.getString("SHARE_IMG");
+            if (obj1.has("SHARE_IMG")) {
+                logo = obj1.getString("SHARE_IMG");
+            } else {
+                logo = "";
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -433,14 +437,13 @@ public class ListScreen extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String avoid) {
-
-            //Toast.makeText(ListScreen.this, "Load Xong", Toast.LENGTH_SHORT).show();
             adapter = new ListAdapter(
                     getApplicationContext(),
                     R.layout.item_listview,
                     mangLV
             );
             lv.setAdapter(adapter);
+            arrangeSalary();
             Dialog.cancel();
 
         }

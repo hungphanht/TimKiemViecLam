@@ -62,7 +62,11 @@ public class ListAdapter extends ArrayAdapter<Job> {
             txt5.setText(p.date_view);
 
             ImageView img = (ImageView) view.findViewById(R.id.imvLogo);
-            Picasso.with(getContext()).load(p.share_img).into(img);
+            if (p.share_img == "") {
+                img.setImageResource(R.drawable.ic_no_logo);
+            } else {
+                Picasso.with(getContext()).load(p.share_img).into(img);
+            }
         }
         return view;
     }

@@ -134,7 +134,11 @@ public class Detail_Offline_Screen extends AppCompatActivity {
                txtWebsite.setText(job.getEmp_website());
                txtLink.setText(job.getJob_url());
                txtPhone.setText(job.getJob_contact_phone());
-               Picasso.with(Detail_Offline_Screen.this).load(job.getShare_img()).into(imgLoGo);
+               if (job.getShare_img().equals("")){
+                   imgLoGo.setImageResource(R.drawable.ic_no_logo);
+               }else {
+                   Picasso.with(Detail_Offline_Screen.this).load(job.getShare_img()).into(imgLoGo);
+               }
 
            }
         }

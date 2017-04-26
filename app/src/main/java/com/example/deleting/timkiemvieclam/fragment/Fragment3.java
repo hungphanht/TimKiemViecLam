@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
 import com.example.deleting.timkiemvieclam.Detail_Offline_Screen;
@@ -40,7 +41,6 @@ public class Fragment3 extends Fragment {
     MyDatabaseAccess db;
     ArrayList<Job> arr = new ArrayList<Job>();
     Button btn;
-    String DateView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,23 +80,12 @@ public class Fragment3 extends Fragment {
         return rootView;
     }
 
-    public void convert() {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        String s = DateView;
-        Date date;
-        try {
-            date = df.parse(s);
-            String newDate  = df.format(date);
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
-    }
     public void arrayDate() {
-        for (int i = 0; i < lv.getCount(); i ++){
+        for (int i = 0; i < lv.getCount(); i++) {
             Collections.sort(arr, new Comparator<Job>() {
                 @Override
                 public int compare(Job o1, Job o2) {
-                    if(o1.getDate_view() == null || o2.getDate_view() == null)
+                    if (o1.getDate_view() == null || o2.getDate_view() == null)
                         return 0;
                     return o2.getDate_view().compareTo(o1.getDate_view());
                 }
@@ -107,7 +96,6 @@ public class Fragment3 extends Fragment {
 
     public void arrangeSalary() {
         for (int i = 0; i < lv.getCount(); i++) {
-            Log.d("aaaa", "name: " + arr.get(i).getJob_title() + " luong: " + arr.get(i).getJob_tosalary());
             Collections.sort(arr, new Comparator<Job>() {
                 @Override
                 public int compare(Job o1, Job o2) {
@@ -130,7 +118,6 @@ public class Fragment3 extends Fragment {
         List<Job> contacts = db.getAllJob();
 
         for (Job job : contacts) {
-            DateView = job.getDate_view();
             Job tmp = new Job();
             tmp.setJob_title(job.getJob_title());
             tmp.setJob_contact_company(job.getJob_contact_company());
@@ -138,9 +125,14 @@ public class Fragment3 extends Fragment {
             tmp.setJob_fromsalary(job.getJob_fromsalary());
             tmp.setJob_tosalary(job.getJob_tosalary());
             tmp.setSalary_unit(job.getSalary_unit());
-            tmp.setDate_view(DateView);
+            tmp.setDate_view(job.getDate_view());
             tmp.setJob_id(job.getJob_id());
-            tmp.setShare_img(job.getShare_img());
+            tmp.setJob_lastdate(job.getJob_lastdate());
+            if (job.getShare_img().equals("")) {
+                tmp.setShare_img("");
+            } else {
+                tmp.setShare_img(job.getShare_img());
+            }
             arr.add(tmp);
         }
         adapter = new BookMarkAdapter(getActivity(), R.layout.bookmark_item_listview, arr);
@@ -168,10 +160,19 @@ public class Fragment3 extends Fragment {
             CheckBox chk = (CheckBox) v.findViewById(R.id.chkDelete);
 
             if (chk.isChecked()) {
-                db.deleteContact(arr.get(i).getJob_id());
+                db.deleteJob(arr.get(i).getJob_id());
                 arr.remove(arr.get(i));
+                Toast.makeText(getActivity(), "Đã Xóa", Toast.LENGTH_SHORT).show();
             }
         }
+        // Sau khi xóa xong thì gọi update giao diện
+        adapter.notifyDataSetChanged();
+    }
+
+    public void xulyXoaAll() {
+        db.deleteAllJob();
+        arr.clear();
+        Toast.makeText(getActivity(), "Đã Xóa", Toast.LENGTH_SHORT).show();
         // Sau khi xóa xong thì gọi update giao diện
         adapter.notifyDataSetChanged();
     }
@@ -189,6 +190,9 @@ public class Fragment3 extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_item_delte:
                 xulyXoa();
+                return true;
+            case R.id.menu_item_delte_all:
+                xulyXoaAll();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

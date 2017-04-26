@@ -209,10 +209,15 @@ public class MyDatabaseAccess extends SQLiteOpenHelper {
         return jobList;
     }
     
-    public Integer deleteContact (Integer id) {
+    public Integer deleteJob (Integer id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(table_Job, col_job_id + " = ?",
                 new String[] { Integer.toString(id) });
+    }
+
+    public Integer deleteAllJob () {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(table_Job, null, null);
     }
 
     public int getJobsCount() {

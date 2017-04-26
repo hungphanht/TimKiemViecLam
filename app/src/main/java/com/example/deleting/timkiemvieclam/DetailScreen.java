@@ -70,8 +70,9 @@ public class DetailScreen extends AppCompatActivity {
     CheckBox cbSave;
     Button Home;
     MyDatabaseAccess db = new MyDatabaseAccess(this);
-    String fromSalary, toSalary, fromAge, toAge, linkImage, salaryUnit;
-    int Gender,key;
+    String fromSalary, toSalary, linkImage, salaryUnit;
+    int fromAge, toAge;
+    int Gender, key;
     String data, apisearch;
     private static int SPLASH_TIME_OUT = 3000;
     public static String message;
@@ -83,7 +84,6 @@ public class DetailScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_screen);
-
 
 
         txtTenCongViec = (TextView) findViewById(R.id.txtTenCongViec);
@@ -169,8 +169,8 @@ public class DetailScreen extends AppCompatActivity {
                         jobs.setJob_title(txtTenCongViec.getText().toString());
                         jobs.setJob_fromsalary(Long.parseLong(fromSalary));
                         jobs.setJob_tosalary(Long.parseLong(toSalary));
-                        jobs.setJob_fromage(Integer.parseInt(fromAge));
-                        jobs.setJob_toage(Integer.parseInt(toAge));
+                        jobs.setJob_fromage(fromAge);
+                        jobs.setJob_toage(toAge);
                         jobs.setJob_gender(Gender);
                         jobs.setJob_lastdate(txtLastDate.getText().toString());
                         jobs.setJob_content(txtMoTa.getText().toString());
@@ -249,10 +249,9 @@ public class DetailScreen extends AppCompatActivity {
             String emp_desc = obj.getString("EMP_DESC").replace("*", "\r\n* ").replace("<br/>", "").replace("<ul>", "").replace("</ul>", "").replace("<li>", "").replace("</li>", "").replace("<p>", "").replace("</p>", "").replace("<em>", "").replace("</em>", "").replace("<strong>", "").replace("</strong>", "").replace(":&nbsp;", "").replace("&nbsp", "").replace("&amp;", "").replace(";", "").replace(";-", "\r\n-").replace("+", "\r\n+").replace(":-", ":\r\n- ").replace(".-", ".\r\n- ").replace("<br />", "").replace("$ndash", "");
             fromSalary = obj.getString("JOB_FROMSALARY");
             toSalary = obj.getString("JOB_TOSALARY");
-            fromAge = obj.getString("JOB_FROMAGE");
-            toAge = obj.getString("JOB_TOAGE");
+            fromAge = obj.getInt("JOB_FROMAGE");
+            toAge = obj.getInt("JOB_TOAGE");
             Gender = obj.getInt("JOB_GENDER");
-            linkImage = obj.get("SHARE_IMG").toString();
             salaryUnit = obj.getString("JOB_SALARYUNIT").replace("1", "");
 
             //kiểm tra xem có tồn tại thuộc tính id hay không
@@ -289,7 +288,11 @@ public class DetailScreen extends AppCompatActivity {
                 } else {
                     GioiTinh = "Nữ";
                 }
-                txtYeuCau.setText("- Giới tính: " + GioiTinh + "\r\n- Tuổi: " + fromAge + " - " + toAge + "\r\n" + job_requireskill);
+                if (fromAge == 0 && toAge == 0) {
+                    txtYeuCau.setText("- Giới tính: " + GioiTinh + "\r\n- Tuổi: " + "Không yêu cầu"  + "\r\n" + job_requireskill);
+                } else {
+                    txtYeuCau.setText("- Giới tính: " + GioiTinh + "\r\n- Tuổi: " + fromAge + " - " + toAge + "\r\n" + job_requireskill);
+                }
             }
 
             if (obj.has("EMP_DESC"))
@@ -319,9 +322,13 @@ public class DetailScreen extends AppCompatActivity {
             if (obj.has("JOB_CONTACT_PHONE"))
                 txtPhone.setText(obj.getString("JOB_CONTACT_PHONE").replace("null", "Không có Số Điện Thoại"));
 
-            if (obj.has("SHARE_IMG"))
+            if (obj.has("SHARE_IMG")) {
+                linkImage = obj.get("SHARE_IMG").toString();
                 Picasso.with(this).load(obj.get("SHARE_IMG").toString()).into(imgLoGo);
-
+            }else{
+                imgLoGo.setImageResource(R.drawable.ic_no_logo);
+                linkImage = "";
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();
