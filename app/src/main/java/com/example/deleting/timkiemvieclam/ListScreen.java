@@ -11,11 +11,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ImageButton;
 
 import com.example.deleting.timkiemvieclam.adapter.ListAdapter;
 import com.example.deleting.timkiemvieclam.model.Job;
@@ -33,7 +33,13 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 /**
  * Created by SONY on 3/24/2017.
@@ -53,6 +59,7 @@ public class ListScreen extends AppCompatActivity {
     static String logo;
     static String apilogo;
     String key,idIndustry, idLocation;
+    String  DateView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +73,7 @@ public class ListScreen extends AppCompatActivity {
         View view =getSupportActionBar().getCustomView();
         TextView tvTitle = (TextView) findViewById(R.id.lvListJob);
         tvTitle.setText("Danh Sách Công Việc");
-		
+
 		ImageButton imageButton = (ImageButton) view.findViewById(R.id.action_bar_back);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +97,7 @@ public class ListScreen extends AppCompatActivity {
          idIndustry = packageFromCaller.getString("idIndustry");
          idLocation = packageFromCaller.getString("idLocation");
 
-        new LoadDialog().execute();
+        //new LoadDialog().execute();
 
 
 
@@ -108,7 +115,44 @@ public class ListScreen extends AppCompatActivity {
         );
         adapternews.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spnslnews.setAdapter(adapternews);
+        spnslnews.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spnslnews.getSelectedItem().equals("1-20")) {
+                    Toast.makeText(ListScreen.this, "1", Toast.LENGTH_SHORT).show();
+                    for (int i = lv.getCount() - 1; i >= 0; i--) {
+                        mangLV.remove(i);
+                    }
+                    new LoadDialog().execute();
+                } else if (spnslnews.getSelectedItem().equals("20-40")) {
+                    Toast.makeText(ListScreen.this, "2", Toast.LENGTH_SHORT).show();
+                    for (int i = lv.getCount() - 1; i >= 0; i--) {
+                        mangLV.remove(i);
+                    }
+                    if (idIndustry == "") {
+                        apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"location\":\"" + idLocation + "\",\"start\":\"" + 20 + "\",\"limit\":\"" + 20 + "\"}";
+                    } else {
+                        apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"industry\":\"" + idIndustry + "\",\"location\":\"" + idLocation + "\",\"start\":\"" + 20 + "\",\"limit\":\"" + 20 + "\"}";
+                    }
+                    test();
+                } else if (spnslnews.getSelectedItem().equals("40-60")) {
+                    Toast.makeText(ListScreen.this, "3", Toast.LENGTH_SHORT).show();
+                    for (int i = lv.getCount() - 1; i >= 0; i--) {
+                        mangLV.remove(i);
+                    }
+                    if (idIndustry == "") {
+                        apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"location\":\"" + idLocation + "\",\"start\":\"" + 40 + "\",\"limit\":\"" + 20 + "\"}";
+                    } else {
+                        apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"industry\":\"" + idIndustry + "\",\"location\":\"" + idLocation + "\",\"start\":\"" + 40 + "\",\"limit\":\"" + 20 + "\"}";
+                    }
+                    test();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -119,6 +163,83 @@ public class ListScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        spnlocation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spnlocation.getSelectedItem().toString().equals("Lương")) {
+                    arrangeSalary();
+                    Toast.makeText(ListScreen.this, "Select Salary", Toast.LENGTH_LONG).show();
+                } else if (spnlocation.getSelectedItem().toString().equals("Ngày")) {
+                    arrayDate();
+                    Toast.makeText(ListScreen.this, "Select Datetime", Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+    public void convert() {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String s = DateView;
+        Date date;
+        try {
+            date = df.parse(s);
+            String newDate  = df.format(date);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+    }
+    public void arrayDate() {
+       for (int i = 0; i < lv.getCount(); i ++){
+           Collections.sort(mangLV, new Comparator<Job>() {
+               @Override
+               public int compare(Job o1, Job o2) {
+                   if(o1.getDate_view() == null || o2.getDate_view() == null)
+                       return 0;
+                   return o2.getDate_view().compareTo(o1.getDate_view());
+               }
+           });
+           adapter.notifyDataSetChanged();
+       }
+    }
+    public void arrangeSalary() {
+        for (int i = 0; i < lv.getCount(); i++) {
+            Collections.sort(mangLV, new Comparator<Job>() {
+                @Override
+                public int compare(Job o1, Job o2) {
+                    long salary1 = o1.getJob_tosalary();
+                    long salary2 = o2.getJob_tosalary();
+                    if (salary1 < salary2) {
+                        return 1;
+                    } else if (salary1 == salary2) {
+                        return 0;
+                    } else {
+                        return -1;
+                    }
+                }
+            });
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+
+
+    public void test() {
+        String input = "";
+        try {
+            input = downloadUrl(apisearch);
+            Log.e("test", "da o day");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            //Log.e("test", "Loi o day");
+            e.printStackTrace();
+        }
+
+        String data = GetJson(input);
+        Parsejson(data);
+        adapter.notifyDataSetChanged();
     }
 
     private String Parsejson(String input) {
@@ -273,7 +394,7 @@ public class ListScreen extends AppCompatActivity {
         return data;
     }
 
-    private class LoadDialog extends AsyncTask<Void, Void, String>{
+    private class LoadDialog extends AsyncTask<Void, Void, String> {
 
         ProgressDialog Dialog;
         int position;
@@ -281,9 +402,9 @@ public class ListScreen extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             if (idIndustry == "") {
-                apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"location\":\"" + idLocation + "\"}";
+                apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"location\":\"" + idLocation + "\",\"start\":\"" + 0 + "\",\"limit\":\"" + 20 + "\"}";
             } else {
-                apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"industry\":\"" + idIndustry + "\",\"location\":\"" + idLocation + "\"}";
+                apisearch = "http://api.careerbuilder.vn/?method=advanceSearchJobs&token=a5ab26bde79eb7db6198530ddaff3e236&arrParam={\"keyword\":\"" + key + "\",\"industry\":\"" + idIndustry + "\",\"location\":\"" + idLocation + "\",\"start\":\"" + 0 + "\",\"limit\":\"" + 20 + "\"}";
             }
             //Hiển thị Dialog loading...
             Dialog = new ProgressDialog(ListScreen.this);
@@ -298,12 +419,13 @@ public class ListScreen extends AppCompatActivity {
             String input = "";
             try {
                 input = downloadUrl(apisearch);
-                //Log.e("test", "da o day");
+                Log.e("test", "da o day");
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 //Log.e("test", "Loi o day");
                 e.printStackTrace();
             }
+
             String data = GetJson(input);
             Parsejson(data);
             return null;
