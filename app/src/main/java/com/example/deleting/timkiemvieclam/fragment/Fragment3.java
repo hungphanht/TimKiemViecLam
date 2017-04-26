@@ -1,12 +1,8 @@
 package com.example.deleting.timkiemvieclam.fragment;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,22 +14,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.deleting.timkiemvieclam.Database.MyDatabaseAccess;
-import com.example.deleting.timkiemvieclam.DetailScreen;
 import com.example.deleting.timkiemvieclam.Detail_Offline_Screen;
 import com.example.deleting.timkiemvieclam.R;
 import com.example.deleting.timkiemvieclam.adapter.BookMarkAdapter;
-import com.example.deleting.timkiemvieclam.adapter.ListAdapter;
-import com.example.deleting.timkiemvieclam.adapter.SlidingMenuAdapter;
-import com.example.deleting.timkiemvieclam.model.ItemSlideMenu;
 import com.example.deleting.timkiemvieclam.model.Job;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class Fragment3 extends Fragment {
@@ -44,6 +40,7 @@ public class Fragment3 extends Fragment {
     MyDatabaseAccess db;
     ArrayList<Job> arr = new ArrayList<Job>();
     Button btn;
+    String DateView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,6 +57,22 @@ public class Fragment3 extends Fragment {
         adaptersort.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spnlocation.setAdapter(adaptersort);
 
+        spnlocation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (spnlocation.getSelectedItem().toString().equals("Lương")) {
+                    arrangeSalary();
+                } else if (spnlocation.getSelectedItem().toString().equals("Ngày")) {
+                    arrayDate();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         setHasOptionsMenu(true);
 
         getList();
@@ -67,10 +80,57 @@ public class Fragment3 extends Fragment {
         return rootView;
     }
 
+    public void convert() {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String s = DateView;
+        Date date;
+        try {
+            date = df.parse(s);
+            String newDate  = df.format(date);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+    }
+    public void arrayDate() {
+        for (int i = 0; i < lv.getCount(); i ++){
+            Collections.sort(arr, new Comparator<Job>() {
+                @Override
+                public int compare(Job o1, Job o2) {
+                    if(o1.getDate_view() == null || o2.getDate_view() == null)
+                        return 0;
+                    return o2.getDate_view().compareTo(o1.getDate_view());
+                }
+            });
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    public void arrangeSalary() {
+        for (int i = 0; i < lv.getCount(); i++) {
+            Log.d("aaaa", "name: " + arr.get(i).getJob_title() + " luong: " + arr.get(i).getJob_tosalary());
+            Collections.sort(arr, new Comparator<Job>() {
+                @Override
+                public int compare(Job o1, Job o2) {
+                    long salary1 = o1.getJob_tosalary();
+                    long salary2 = o2.getJob_tosalary();
+                    if (salary1 < salary2) {
+                        return 1;
+                    } else if (salary1 == salary2) {
+                        return 0;
+                    } else {
+                        return -1;
+                    }
+                }
+            });
+            adapter.notifyDataSetChanged();
+        }
+    }
+
     public void getList() {
         List<Job> contacts = db.getAllJob();
 
         for (Job job : contacts) {
+            DateView = job.getDate_view();
             Job tmp = new Job();
             tmp.setJob_title(job.getJob_title());
             tmp.setJob_contact_company(job.getJob_contact_company());
@@ -78,7 +138,7 @@ public class Fragment3 extends Fragment {
             tmp.setJob_fromsalary(job.getJob_fromsalary());
             tmp.setJob_tosalary(job.getJob_tosalary());
             tmp.setSalary_unit(job.getSalary_unit());
-            tmp.setDate_view(job.getDate_view());
+            tmp.setDate_view(DateView);
             tmp.setJob_id(job.getJob_id());
             tmp.setShare_img(job.getShare_img());
             arr.add(tmp);
@@ -97,7 +157,7 @@ public class Fragment3 extends Fragment {
                 startActivity(intent);
             }
         });
-
+        adapter.notifyDataSetChanged();
     }
 
     public void xulyXoa() {
@@ -134,4 +194,5 @@ public class Fragment3 extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }
