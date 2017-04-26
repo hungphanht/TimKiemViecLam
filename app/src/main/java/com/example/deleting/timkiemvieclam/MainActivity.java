@@ -3,12 +3,14 @@ package com.example.deleting.timkiemvieclam;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -130,6 +132,18 @@ public class MainActivity extends ActionBarActivity {
             case 2:
                 fragment = new Fragment3();
                 break;
+            case 3:
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, android.R.style.Theme_DeviceDefault_Light_Dialog);
+                builder.setTitle("About");
+                builder.setMessage("Design by Team 4:\r\nĐinh Đình Hiệp\r\nLê Cao Thế\r\nPhan Văn Hùng\r\nPhạm Chí Hải");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setTitle(listSliding.get(0).getTitle());
+                    }
+                });
+                builder.setCancelable(true);
+                builder.create().show();
             default:
                 fragment = new Fragment1();
                 break;
