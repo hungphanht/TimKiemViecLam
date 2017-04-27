@@ -154,7 +154,7 @@ public class FragmentRq extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("keyworđ", input);
                 bundle.putInt("id", idin);
-                bundle.putInt("count", count);
+                bundle.putInt("count", 20);
                 if (checkconn == true) {
                     FragmentResurtRq resurtRq = new FragmentResurtRq();
                     resurtRq.setArguments(bundle);

@@ -49,7 +49,7 @@ public class Fragment3 extends Fragment {
         lv = (ListView) rootView.findViewById(R.id.listViewDanhSach);
         db = new MyDatabaseAccess(getActivity());
 
-
+        getActivity().setTitle("Lịch sử công việc của bạn");
         spnlocation = (Spinner) rootView.findViewById(R.id.spnlocation);
         ArrayAdapter<String> adaptersort = new ArrayAdapter<String>(
                 getActivity().getBaseContext(), android.R.layout.simple_spinner_item, arrayLocation

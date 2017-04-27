@@ -35,7 +35,7 @@ public class FragmentResurtRq extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
+        getActivity().setTitle("Danh sách những yêu cầu");
         Bundle data = getArguments();
         if (data != null) {
             keyword = data.getString("keyworđ");
